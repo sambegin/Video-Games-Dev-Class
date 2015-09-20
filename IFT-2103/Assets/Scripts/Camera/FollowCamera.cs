@@ -19,7 +19,7 @@ public class FollowCamera : MonoBehaviour {
     internal void setTarget(GameObject target)
     {
         this.target = target;
-        Vector3 cameraPositionFromPlayer = new Vector3(-10, 4, 0);
+        Vector3 cameraPositionFromPlayer = new Vector3(-10, 5, 0);
         this.cameraOffset = target.transform.position - cameraPositionFromPlayer;
     }
 
