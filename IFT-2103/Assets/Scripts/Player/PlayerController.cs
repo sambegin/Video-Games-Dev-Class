@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     private float jumpHeight = 15.0f;
     private Vector3 moveDirection = Vector3.zero;
     private float gravity = 50.0f;
+    public int rotateSpeed = 200;
+
     void Start()
     {
        
@@ -21,16 +23,15 @@ public class PlayerController : MonoBehaviour
 
     private void handleRotation()
     {
-        int scrollSpeed = 200;
         if (mouseOnRightEdge())
         {
             Vector3 rotateRight = new Vector3(0, 1, 0);
-            transform.Rotate(rotateRight * Time.deltaTime * scrollSpeed, Space.Self);
+            transform.Rotate(rotateRight * Time.deltaTime * rotateSpeed, Space.Self);
         }
         if (mouseOnLeftEdge())
         {
             Vector3 rotateLeft = new Vector3(0, -1, 0);
-            transform.Rotate(rotateLeft * Time.deltaTime * scrollSpeed, Space.Self);
+            transform.Rotate(rotateLeft * Time.deltaTime * rotateSpeed, Space.Self);
         }
     }
 
