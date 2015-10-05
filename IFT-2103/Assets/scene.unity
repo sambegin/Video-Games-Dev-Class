@@ -85,6 +85,66 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &421027301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 421027303}
+  - 108: {fileID: 421027302}
+  m_Layer: 0
+  m_Name: Directional light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &421027302
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 421027301}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_Type: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_NormalBias: .400000006
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_BounceIntensity: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_AreaSize: {x: 1, y: 1}
+--- !u!4 &421027303
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 421027301}
+  m_LocalRotation: {x: .408217937, y: -.234569728, z: .109381676, w: .875426054}
+  m_LocalPosition: {x: -2.3235631, y: .152887821, z: 3.71587992}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
 --- !u!1 &1395160657
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,12 +169,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1395160657}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3faf038e085235c45836d0fbfbc9c984, type: 3}
+  m_Script: {fileID: 11500000, guid: 5418cf6c5910b754b969af12002dce41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapPrefab: {fileID: 110606, guid: 1b52a0aa5377525439d3d81624791661, type: 2}
-  playerPrefab: {fileID: 183598, guid: 97663cb6d21d1f242aacd764b7a191a0, type: 2}
-  cameraPrefab: {fileID: 2029590, guid: b79e33791563e8442942524f0a486595, type: 2}
+  mapPrefab: {fileID: 110606, guid: d454e15193ebaf34e9502b5cca379f9f, type: 2}
+  playerPrefab: {fileID: 183598, guid: 615722e9151354e4ab3753a29fa258c7, type: 2}
+  cameraPrefab: {fileID: 2029590, guid: c411379a618cc894db123eb6d496e9e0, type: 2}
 --- !u!4 &1395160659
 Transform:
   m_ObjectHideFlags: 0
