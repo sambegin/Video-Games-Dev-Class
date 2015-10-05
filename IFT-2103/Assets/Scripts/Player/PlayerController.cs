@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,6 +12,24 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
        
+    }
+
+    public void Update()
+    {
+        handleRotation();
+    }
+
+    private void handleRotation()
+    {
+        int scrollSpeed = 60;
+        if (Input.mousePosition.x >= Screen.width * 0.95)
+        {
+            transform.Rotate(Vector3.up * Time.deltaTime * scrollSpeed, Space.Self);
+        }
+        if (Input.mousePosition.x <= Screen.width * 0.05)
+        {
+            transform.Rotate(Vector3.down * Time.deltaTime * scrollSpeed, Space.Self);
+        }
     }
 
     void FixedUpdate()
