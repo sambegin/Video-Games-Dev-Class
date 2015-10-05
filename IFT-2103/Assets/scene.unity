@@ -169,12 +169,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1395160657}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5418cf6c5910b754b969af12002dce41, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e4f35730adc4cd4d957aef129cf0f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapPrefab: {fileID: 110606, guid: d454e15193ebaf34e9502b5cca379f9f, type: 2}
-  playerPrefab: {fileID: 183598, guid: 615722e9151354e4ab3753a29fa258c7, type: 2}
-  cameraPrefab: {fileID: 2029590, guid: c411379a618cc894db123eb6d496e9e0, type: 2}
+  mapPrefab: {fileID: 110606, guid: ebe56cef3078f174a8dc9cc0d07b0782, type: 2}
+  playerPrefab: {fileID: 183598, guid: a5f8a8a79841de843bb4239ee07d3b99, type: 2}
+  cameraPrefab: {fileID: 2029590, guid: 8719c2486d94ef04c95f8d4348ade435, type: 2}
 --- !u!4 &1395160659
 Transform:
   m_ObjectHideFlags: 0
