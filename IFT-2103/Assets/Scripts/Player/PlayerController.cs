@@ -21,15 +21,27 @@ public class PlayerController : MonoBehaviour
 
     private void handleRotation()
     {
-        int scrollSpeed = 60;
-        if (Input.mousePosition.x >= Screen.width * 0.95)
+        int scrollSpeed = 200;
+        if (mouseOnRightEdge())
         {
-            transform.Rotate(Vector3.up * Time.deltaTime * scrollSpeed, Space.Self);
+            Vector3 rotateRight = new Vector3(0, 1, 0);
+            transform.Rotate(rotateRight * Time.deltaTime * scrollSpeed, Space.Self);
         }
-        if (Input.mousePosition.x <= Screen.width * 0.05)
+        if (mouseOnLeftEdge())
         {
-            transform.Rotate(Vector3.down * Time.deltaTime * scrollSpeed, Space.Self);
+            Vector3 rotateLeft = new Vector3(0, -1, 0);
+            transform.Rotate(rotateLeft * Time.deltaTime * scrollSpeed, Space.Self);
         }
+    }
+
+    private static bool mouseOnLeftEdge()
+    {
+        return Input.mousePosition.x <= Screen.width * 0.05;
+    }
+
+    private static bool mouseOnRightEdge()
+    {
+        return Input.mousePosition.x >= Screen.width * 0.95;
     }
 
     void FixedUpdate()
