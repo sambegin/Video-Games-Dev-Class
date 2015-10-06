@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
     public GameObject mapPrefab;
     public GameObject playerPrefab;
     public Camera cameraPrefab;
+    private Camera inGameCamera;
 
 	// Use this for initialization
 	void Start () {
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour {
     {
         Camera camera = Instantiate(cameraPrefab, new Vector3(0, 0, 0), new Quaternion()) as Camera;
         camera.GetComponent<FollowCamera>().setTarget(target);
+        this.inGameCamera = camera;
     }
 
     private GameObject loadPlayer()
@@ -41,5 +43,10 @@ public class GameManager : MonoBehaviour {
         Vector3 initialPlayerPosition = new Vector3(0, 2f, 0);
         GameObject player = Instantiate(playerPrefab, initialPlayerPosition, new Quaternion()) as GameObject;
         return player;
+    }
+
+    public Camera getCamera()
+    {
+        return this.inGameCamera;
     }
 }

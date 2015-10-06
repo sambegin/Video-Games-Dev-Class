@@ -26,6 +26,13 @@ public class FollowCamera : MonoBehaviour {
 
     void LateUpdate()
     {
+
+        Camera camera = GetComponent<Camera>();
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        Debug.DrawRay(ray.origin, ray.direction * 10, Color.red);
+
+
+
         if (!isColliding)
         {
             float desiredAngle = target.transform.eulerAngles.y;
@@ -34,6 +41,9 @@ public class FollowCamera : MonoBehaviour {
             transform.LookAt(target.transform);
         }
         isColliding = false;
+
+        //Camera camera = GetComponent<Camera>();
+        //transform.LookAt(camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, camera.nearClipPlane)));
 
     }
 

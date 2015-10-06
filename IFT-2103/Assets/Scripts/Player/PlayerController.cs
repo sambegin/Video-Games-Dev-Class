@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private float jumpHeight = 15.0f;
     private Vector3 moveDirection = Vector3.zero;
     private float gravity = 50.0f;
-    public int rotateSpeed = 1;
+   //private int rotateSpeed = 200;
 
     void Start()
     {
@@ -24,30 +24,66 @@ public class PlayerController : MonoBehaviour
     private void handleRotation()
     {
         //float horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
-        Debug.Log(Input.mouseScrollDelta.x);
-        float horizontal = Input.mouseScrollDelta.x * rotateSpeed;
-        transform.Rotate(0, horizontal, 0);
+        //Debug.Log(horizontal);
+        //float horizontal = Input.mouseScrollDelta.x * rotateSpeed;
+        //transform.Rotate(0, horizontal, 0);
+
         //if (mouseOnRightEdge())
         //{
+        //    //double xStart = Screen.width * 0.65;
+        //    //double variation = Input.mousePosition.x - xStart;
+        //    //double rotateSpeedInDouble = Math.Pow(variation, 1.1);
+        //    //int rotateSpeed = Convert.ToInt32(rotateSpeedInDouble);
+        //    //rotateSpeed -= 200;
+        //    int rotateSpeed = 200;
+
         //    Vector3 rotateRight = new Vector3(0, 1, 0);
         //    transform.Rotate(rotateRight * Time.deltaTime * rotateSpeed, Space.Self);
         //}
         //if (mouseOnLeftEdge())
         //{
+
+        //    int rotateSpeed = 200;
+
+
+
         //    Vector3 rotateLeft = new Vector3(0, -1, 0);
         //    transform.Rotate(rotateLeft * Time.deltaTime * rotateSpeed, Space.Self);
         //}
+
+
+        //transform.LookAt(camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, camera.nearClipPlane)));
+        GameManager manger = FindObjectOfType<GameManager>();
+        Camera camera = manger.getCamera();
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        Debug.DrawRay(ray.origin, ray.direction * 10, Color.yellow);
+        RaycastHit hit = new RaycastHit();
+        Vector3 lookTarget = new Vector3();
+        if (Physics.Raycast(ray, out hit))
+        {
+            lookTarget = hit.point;
+            Vector3 lookDelta = (hit.point - transform.position);
+            Quaternion targetRot = Quaternion.LookRotation(lookDelta);
+            int turnSpeed = 100;
+            float rotSpeed = turnSpeed * Time.deltaTime;
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, rotSpeed);
+        }
+
+
+       
+      
+
     }
 
-    //private static bool mouseOnLeftEdge()
-    //{
-    //    return Input.mousePosition.x <= Screen.width * 0.05;
-    //}
+    private static bool mouseOnLeftEdge()
+    {
+        return Input.mousePosition.x < Screen.width * 0.49;
+    }
 
-    //private static bool mouseOnRightEdge()
-    //{
-    //    return Input.mousePosition.x >= Screen.width * 0.95;
-    //}
+    private static bool mouseOnRightEdge()
+    {
+        return Input.mousePosition.x > Screen.width * 0.51;
+    }
 
     void FixedUpdate()
     {
