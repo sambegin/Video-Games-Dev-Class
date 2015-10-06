@@ -5,10 +5,11 @@ public class FollowCamera : MonoBehaviour {
 
     GameObject target;
     Vector3 cameraOffset;
+    private bool isColliding;
 
     // Use this for initialization
     void Start () {
-	
+        this.isColliding = false;
 	}
 	
 	// Update is called once per frame
@@ -25,9 +26,15 @@ public class FollowCamera : MonoBehaviour {
 
     void LateUpdate()
     {
-        float desiredAngle = target.transform.eulerAngles.y;
-        Quaternion rotation = Quaternion.Euler(0, desiredAngle, 0);
-        transform.position = target.transform.position - (rotation * cameraOffset);
-        transform.LookAt(target.transform);
+        if (!isColliding)
+        {
+            float desiredAngle = target.transform.eulerAngles.y;
+            Quaternion rotation = Quaternion.Euler(0, desiredAngle, 0);
+            transform.position = target.transform.position - (rotation * cameraOffset);
+            transform.LookAt(target.transform);
+        }
+        isColliding = false;
+
     }
+
 }
