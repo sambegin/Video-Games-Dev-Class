@@ -9,11 +9,11 @@ public class PlayerController : MonoBehaviour
     private float jumpHeight = 15.0f;
     private Vector3 moveDirection = Vector3.zero;
     private float gravity = 50.0f;
-    public int rotateSpeed = 1;
+    public int rotateSpeed;
 
     void Start()
     {
-       
+        this.rotateSpeed = 200;
     }
 
     public void Update()
@@ -23,31 +23,28 @@ public class PlayerController : MonoBehaviour
 
     private void handleRotation()
     {
-        //float horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
-        Debug.Log(Input.mouseScrollDelta.x);
-        float horizontal = Input.mouseScrollDelta.x * rotateSpeed;
-        transform.Rotate(0, horizontal, 0);
-        //if (mouseOnRightEdge())
-        //{
-        //    Vector3 rotateRight = new Vector3(0, 1, 0);
-        //    transform.Rotate(rotateRight * Time.deltaTime * rotateSpeed, Space.Self);
-        //}
-        //if (mouseOnLeftEdge())
-        //{
-        //    Vector3 rotateLeft = new Vector3(0, -1, 0);
-        //    transform.Rotate(rotateLeft * Time.deltaTime * rotateSpeed, Space.Self);
-        //}
+        if (mouseOnRightEdge())
+        {
+            Vector3 rotateRight = new Vector3(0, 1, 0);
+            transform.Rotate(rotateRight * Time.deltaTime * rotateSpeed, Space.Self);
+        }
+        if (mouseOnLeftEdge())
+        {
+            Vector3 rotateLeft = new Vector3(0, -1, 0);
+            transform.Rotate(rotateLeft * Time.deltaTime * rotateSpeed, Space.Self);
+        }
     }
 
-    //private static bool mouseOnLeftEdge()
-    //{
-    //    return Input.mousePosition.x <= Screen.width * 0.05;
-    //}
 
-    //private static bool mouseOnRightEdge()
-    //{
-    //    return Input.mousePosition.x >= Screen.width * 0.95;
-    //}
+    private static bool mouseOnLeftEdge()
+    {
+        return Input.mousePosition.x < Screen.width * 0.10;
+    }
+
+    private static bool mouseOnRightEdge()
+    {
+        return Input.mousePosition.x > Screen.width * 0.90;
+    }
 
     void FixedUpdate()
     {

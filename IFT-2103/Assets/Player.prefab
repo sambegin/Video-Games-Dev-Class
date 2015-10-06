@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2e9416493357bc4ba3b9a346088a37e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 200
+  rotateSpeed: 1
 --- !u!135 &13557394
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -430,6 +430,10 @@ Prefab:
       propertyPath: m_LocalRotation.y
       value: .70710659
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 2029590, guid: 8719c2486d94ef04c95f8d4348ade435, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 183598}
