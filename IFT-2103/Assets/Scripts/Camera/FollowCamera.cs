@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class FollowCamera : MonoBehaviour {
 
     GameObject target;
     Vector3 cameraOffset;
     private bool isColliding;
+    private Vector3 cameraPositionFromPlayer;
 
-    // Use this for initialization
     void Start () {
         this.isColliding = false;
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	
 	}
@@ -20,7 +20,7 @@ public class FollowCamera : MonoBehaviour {
     internal void setTarget(GameObject target)
     {
         this.target = target;
-        Vector3 cameraPositionFromPlayer = new Vector3(0, 2, -5);
+        cameraPositionFromPlayer = new Vector3(0, 2, -5);
         this.cameraOffset = target.transform.position - cameraPositionFromPlayer;
     }
 
@@ -31,10 +31,28 @@ public class FollowCamera : MonoBehaviour {
             float desiredAngle = target.transform.eulerAngles.y;
             Quaternion rotation = Quaternion.Euler(0, desiredAngle, 0);
             transform.position = target.transform.position - (rotation * cameraOffset);
-            transform.LookAt(target.transform);
         }
-        isColliding = false;
+        else
+        {
+            verifyIfNotCollidingAnymore();
+        }
+        transform.LookAt(target.transform);
+    }
 
+    private void verifyIfNotCollidingAnymore()
+    {
+        float actualDistance = Vector3.Distance(transform.position, target.transform.position);
+        float supposedDistance = Vector3.Magnitude(cameraPositionFromPlayer);
+
+        if(actualDistance > supposedDistance)
+        {
+            isColliding = false;
+        }
+    }
+
+    public void OnTriggerEnter()
+    {
+        this.isColliding = true;
     }
 
 }

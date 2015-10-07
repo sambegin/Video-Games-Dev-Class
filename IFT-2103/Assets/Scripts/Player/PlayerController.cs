@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private float jumpHeight = 15.0f;
     private Vector3 moveDirection = Vector3.zero;
     private float gravity = 50.0f;
-    public int rotateSpeed;
+    private int rotateSpeed;
 
     void Start()
     {
@@ -38,12 +38,12 @@ public class PlayerController : MonoBehaviour
 
     private static bool mouseOnLeftEdge()
     {
-        return Input.mousePosition.x < Screen.width * 0.10;
+        return Input.mousePosition.x < Screen.width * 0.10 & Input.mousePosition.x > -1;
     }
 
     private static bool mouseOnRightEdge()
     {
-        return Input.mousePosition.x > Screen.width * 0.90;
+        return Input.mousePosition.x > Screen.width * 0.90 & Input.mousePosition.x < Screen.width;
     }
 
     void FixedUpdate()
