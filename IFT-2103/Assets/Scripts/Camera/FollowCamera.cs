@@ -24,7 +24,7 @@ public class FollowCamera : MonoBehaviour {
         this.cameraOffset = target.transform.position - cameraPositionFromPlayer;
     }
 
-    void LateUpdate()
+    public void LateUpdate()
     {
         if (!isColliding)
         {
