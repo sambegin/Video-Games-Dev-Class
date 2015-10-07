@@ -50,3 +50,4 @@ bld/
 [Bb]uild[Ll]og.*
 IFT-2103/Assembly-CSharp.csproj
 IFT-2103/IFT-2103.sln
+IFT-2103/Assembly-CSharp-Editor.csproj
