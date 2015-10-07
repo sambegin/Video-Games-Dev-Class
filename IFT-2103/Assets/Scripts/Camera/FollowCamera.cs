@@ -6,11 +6,11 @@ public class FollowCamera : MonoBehaviour {
 
     GameObject target;
     Vector3 cameraOffset;
-    private bool isColliding;
+    private bool hasCollided;
     private Vector3 cameraPositionFromPlayer;
 
     void Start () {
-        this.isColliding = false;
+        this.hasCollided = false;
 	}
 	
 	void Update () {
@@ -26,18 +26,20 @@ public class FollowCamera : MonoBehaviour {
 
     public void LateUpdate()
     {
-        if (!isColliding)
+        if (hasCollided)
+        {
+            verifyIfNotCollidingAnymore();
+        }
+        else
         {
             float desiredAngle = target.transform.eulerAngles.y;
             Quaternion rotation = Quaternion.Euler(0, desiredAngle, 0);
             transform.position = target.transform.position - (rotation * cameraOffset);
         }
-        else
-        {
-            verifyIfNotCollidingAnymore();
-        }
         transform.LookAt(target.transform);
     }
+
+
 
     private void verifyIfNotCollidingAnymore()
     {
@@ -46,13 +48,13 @@ public class FollowCamera : MonoBehaviour {
 
         if(actualDistance > supposedDistance)
         {
-            isColliding = false;
+            hasCollided = false;
         }
     }
 
     public void OnTriggerEnter()
     {
-        this.isColliding = true;
+        this.hasCollided = true;
     }
 
-}
+    }

@@ -51,3 +51,5 @@ bld/
 IFT-2103/Assembly-CSharp.csproj
 IFT-2103/IFT-2103.sln
 IFT-2103/Assembly-CSharp-Editor.csproj
+IFT-2103/IFT-2103.CSharp.Editor.csproj
+IFT-2103/IFT-2103.CSharp.csproj
