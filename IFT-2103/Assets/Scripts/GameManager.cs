@@ -6,7 +6,6 @@ public class GameManager : MonoBehaviour {
 
     public GameObject mapPrefab;
     public GameObject playerPrefab;
-    public Camera cameraPrefab;
 
 	// Use this for initialization
 	void Start () {
@@ -17,7 +16,6 @@ public class GameManager : MonoBehaviour {
     {
         loadMap();
         GameObject player = loadPlayer();
-        LoadCamera(player);
     }
 
     private void loadMap()
@@ -28,12 +26,6 @@ public class GameManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-    }
-
-    private void LoadCamera(GameObject target)
-    {
-        //Camera camera = Instantiate(cameraPrefab, new Vector3(0, 0, 0), new Quaternion()) as Camera;
-        //camera.GetComponent<FollowCamera>().setTarget(target);
     }
 
     private GameObject loadPlayer()

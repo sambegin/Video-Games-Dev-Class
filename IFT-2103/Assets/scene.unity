@@ -174,7 +174,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapPrefab: {fileID: 110606, guid: ebe56cef3078f174a8dc9cc0d07b0782, type: 2}
   playerPrefab: {fileID: 183598, guid: a5f8a8a79841de843bb4239ee07d3b99, type: 2}
-  cameraPrefab: {fileID: 2029590, guid: 8719c2486d94ef04c95f8d4348ade435, type: 2}
 --- !u!4 &1395160659
 Transform:
   m_ObjectHideFlags: 0
