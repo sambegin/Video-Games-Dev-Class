@@ -32,8 +32,8 @@ public class GameManager : MonoBehaviour {
 
     private void LoadCamera(GameObject target)
     {
-        Camera camera = Instantiate(cameraPrefab, new Vector3(0, 0, 0), new Quaternion()) as Camera;
-        camera.GetComponent<FollowCamera>().setTarget(target);
+        //Camera camera = Instantiate(cameraPrefab, new Vector3(0, 0, 0), new Quaternion()) as Camera;
+        //camera.GetComponent<FollowCamera>().setTarget(target);
     }
 
     private GameObject loadPlayer()
