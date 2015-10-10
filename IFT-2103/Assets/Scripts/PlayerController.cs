@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
     {
         handleDirection();
         handleJump();
-
     }
 
     private void handleJump()

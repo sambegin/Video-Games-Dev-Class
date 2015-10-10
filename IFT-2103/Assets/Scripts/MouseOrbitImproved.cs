@@ -7,7 +7,8 @@ public class MouseOrbitImproved : MonoBehaviour
 {
 
     public Transform target;
-    public float distance = 5.0f;
+    public float originalDistance = 5.0f;
+    private float distance;
     public float xSpeed = 120.0f;
     public float ySpeed = 120.0f;
 
@@ -26,12 +27,23 @@ public class MouseOrbitImproved : MonoBehaviour
         Vector3 angles = transform.eulerAngles;
         x = angles.y;
         y = angles.x;
+
+        this.distance = this.originalDistance;
     }
 
     void LateUpdate()
     {
         if (target)
         {
+            CameraBackWatcher collider = new CameraBackWatcher();
+            float collidingDistance = collider.collidingDistance(transform.position, target.position);
+            
+            distance = collidingDistance;
+            if (distance > originalDistance)
+            {
+                distance = originalDistance;
+            }
+
             x += Input.GetAxis("Mouse X") * xSpeed * distance * 0.02f;
             y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
 

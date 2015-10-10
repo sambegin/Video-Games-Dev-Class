@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 401546, guid: a5f8a8a79841de843bb4239ee07d3b99, type: 2}
-  distance: 5
+  originalDistance: 5
   xSpeed: 120
   ySpeed: 120
   yMinLimit: -20
