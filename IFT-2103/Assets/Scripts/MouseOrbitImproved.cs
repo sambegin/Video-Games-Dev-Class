@@ -35,7 +35,7 @@ public class MouseOrbitImproved : MonoBehaviour
     {
         if (target)
         {
-            CameraBackWatcher collider = new CameraBackWatcher();
+            CameraObstructionWatcher collider = new CameraObstructionWatcher();
             float collidingDistance = collider.collidingDistance(transform.position, target.position);
             
             distance = collidingDistance;

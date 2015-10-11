@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour {
     private void startGame()
     {
         loadMap();
-        GameObject player = loadPlayer();
+        loadPlayer();
     }
 
     private void loadMap()

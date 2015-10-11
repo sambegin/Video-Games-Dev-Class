@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class CameraBackWatcher
+public class CameraObstructionWatcher
 {
     public float collidingDistance(Vector3 cameraPosition, Vector3 playerPosition)
     {
