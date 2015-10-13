@@ -2,7 +2,6 @@
 using System.Collections;
 using System;
 
-[AddComponentMenu("Camera-Control/Mouse Orbit with zoom")]
 public class MouseOrbitImproved : MonoBehaviour
 {
 
@@ -15,13 +14,9 @@ public class MouseOrbitImproved : MonoBehaviour
     public float yMinLimit = -20f;
     public float yMaxLimit = 80f;
 
-    public float distanceMin = .5f;
-    public float distanceMax = 15f;
-
     float x = 0.0f;
     float y = 0.0f;
 
-    // Use this for initialization
     void Start()
     {
         Vector3 angles = transform.eulerAngles;
