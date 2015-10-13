@@ -10,11 +10,6 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private float gravity = 50.0f;
 
-    void Start()
-    {
-
-    }
-
     private void handleDirection()
     {
         Camera playerCamera = GetComponentInChildren<Camera>();

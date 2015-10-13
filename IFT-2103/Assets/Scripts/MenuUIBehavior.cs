@@ -27,7 +27,6 @@ public class MenuUIBehavior : MonoBehaviour {
         }
        
     }
-    
 
     // Update is called once per frame
     void Update()
