@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System;
 
@@ -9,11 +10,6 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        startGame();
-	}
-
-    private void startGame()
-    {
         loadMap();
         loadPlayer();
     }
@@ -24,14 +20,11 @@ public class GameManager : MonoBehaviour {
         Instantiate(mapPrefab, new Vector3(), new Quaternion());
     }
 
-    // Update is called once per frame
-    void Update () {
-    }
-
     private GameObject loadPlayer()
     {
         Vector3 initialPlayerPosition = new Vector3(0, 2f, 0);
         GameObject player = Instantiate(playerPrefab, initialPlayerPosition, new Quaternion()) as GameObject;
         return player;
     }
+
 }
