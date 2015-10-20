@@ -137,6 +137,10 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 401546, guid: a5f8a8a79841de843bb4239ee07d3b99, type: 2}
+    - target: {fileID: 0}
+      propertyPath: originalDistance
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 131734}

@@ -347,6 +347,22 @@ Prefab:
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1351706941}
+    - target: {fileID: 22440896, guid: e6847e0c702d9c94cab1b10fc967c283, type: 2}
+      propertyPath: m_LocalScale.x
+      value: .887541354
+      objectReference: {fileID: 0}
+    - target: {fileID: 22440896, guid: e6847e0c702d9c94cab1b10fc967c283, type: 2}
+      propertyPath: m_LocalScale.y
+      value: .676097572
+      objectReference: {fileID: 0}
+    - target: {fileID: 11433906, guid: e6847e0c702d9c94cab1b10fc967c283, type: 2}
+      propertyPath: m_ScaleFactor
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11433906, guid: e6847e0c702d9c94cab1b10fc967c283, type: 2}
+      propertyPath: m_ReferencePixelsPerUnit
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e6847e0c702d9c94cab1b10fc967c283, type: 2}
   m_IsPrefabParent: 0

@@ -329,8 +329,8 @@ GameObject:
   - 4: {fileID: 701221731}
   - 23: {fileID: 701221730}
   - 102: {fileID: 701221729}
-  - 114: {fileID: 701221728}
   - 65: {fileID: 701221727}
+  - 114: {fileID: 701221728}
   m_Layer: 0
   m_Name: Text_StartGame
   m_TagString: StartGame
@@ -358,7 +358,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 701221726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dfc30400341d504286a8e65532f2bab, type: 3}
+  m_Script: {fileID: 11500000, guid: fa0fe0fa691d3b54ca1c76b95f4c9956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!102 &701221729
@@ -561,8 +561,8 @@ GameObject:
   - 4: {fileID: 1131288493}
   - 23: {fileID: 1131288492}
   - 102: {fileID: 1131288491}
-  - 114: {fileID: 1131288490}
   - 65: {fileID: 1131288489}
+  - 114: {fileID: 1131288490}
   m_Layer: 0
   m_Name: Text_QuitGame
   m_TagString: QuitGame
@@ -590,7 +590,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1131288488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dfc30400341d504286a8e65532f2bab, type: 3}
+  m_Script: {fileID: 11500000, guid: fa0fe0fa691d3b54ca1c76b95f4c9956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!102 &1131288491
