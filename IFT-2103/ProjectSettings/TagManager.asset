@@ -6,6 +6,7 @@ TagManager:
   tags:
   - QuitGame
   - StartGame
+  - LevelOneMap
   layers:
   - Default
   - TransparentFX

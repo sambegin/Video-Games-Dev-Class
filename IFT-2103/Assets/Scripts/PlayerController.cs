@@ -6,9 +6,15 @@ public class PlayerController : MonoBehaviour
 {
 
     private float speed = 20.0f;
-    private float jumpHeight = 15.0f;
+    private float jumpHeight = 20.0f;
     private Vector3 moveDirection = Vector3.zero;
     private float gravity = 50.0f;
+
+    void FixedUpdate()
+    {
+        handleDirection();
+        handleJump();
+    }
 
     private void handleDirection()
     {
@@ -18,12 +24,6 @@ public class PlayerController : MonoBehaviour
         transform.LookAt(cameraPosition);
         Vector3 forwardDirection = transform.position - cameraPosition;
         transform.rotation = Quaternion.LookRotation(forwardDirection);
-    }
-
-    void FixedUpdate()
-    {
-        handleDirection();
-        handleJump();
     }
 
     private void handleJump()
