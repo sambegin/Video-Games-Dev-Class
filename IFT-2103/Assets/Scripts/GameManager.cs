@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour {
 	void Start () {
         loadMap();
         loadPlayer();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void loadMap()
