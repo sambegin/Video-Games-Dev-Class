@@ -33,29 +33,32 @@ public class MouseOrbitImproved : MonoBehaviour
 
     void LateUpdate()
     {
-        if (target)
+        if(Time.timeScale > 0.01)
         {
-            CameraObstructionWatcher collider = new CameraObstructionWatcher();
-            float collidingDistance = collider.collidingDistance(transform.position, target.position);
-            
-            distance = collidingDistance;
-            if (distance > originalDistance)
+            if (target)
             {
-                distance = originalDistance;
+                CameraObstructionWatcher collider = new CameraObstructionWatcher();
+                float collidingDistance = collider.collidingDistance(transform.position, target.position);
+
+                distance = collidingDistance;
+                if (distance > originalDistance)
+                {
+                    distance = originalDistance;
+                }
+
+                x += Input.GetAxis("Mouse X") * xSpeed * distance * 0.02f;
+                y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
+
+                y = ClampAngle(y, yMinLimit, yMaxLimit);
+
+                Quaternion rotation = Quaternion.Euler(y, x, 0);
+
+                Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
+                Vector3 position = rotation * negDistance + target.position;
+
+                transform.rotation = rotation;
+                transform.position = position;
             }
-
-            x += Input.GetAxis("Mouse X") * xSpeed * distance * 0.02f;
-            y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
-
-            y = ClampAngle(y, yMinLimit, yMaxLimit);
-
-            Quaternion rotation = Quaternion.Euler(y, x, 0);
-
-            Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
-            Vector3 position = rotation * negDistance + target.position;
-
-            transform.rotation = rotation;
-            transform.position = position;
         }
     }
 
