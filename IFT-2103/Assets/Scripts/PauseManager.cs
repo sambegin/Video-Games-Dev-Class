@@ -41,4 +41,9 @@ public class PauseManager : MonoBehaviour {
     {
         isPaused = !isPaused;
     }
+
+    public void ReturnToMainMenu ()
+    {
+        Application.LoadLevel(0);
+    }
 }
