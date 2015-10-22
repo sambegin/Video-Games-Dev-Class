@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class MenuUIBehavior : MonoBehaviour {
+public class PauseMenuUIBehavior : MonoBehaviour {
 
 
     public void ChangeMouseEnterTextColor (Text text)

@@ -48,10 +48,7 @@ bld/
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
-IFT-2103/Assembly-CSharp.csproj
+
 IFT-2103/IFT-2103.sln
-IFT-2103/Assembly-CSharp-Editor.csproj
-IFT-2103/IFT-2103.CSharp.Editor.csproj
-IFT-2103/IFT-2103.CSharp.csproj
 IFT-2103/Assets/UnityTestTools/Examples/
 IFT-2103/Shine_Data/output_log.txt
