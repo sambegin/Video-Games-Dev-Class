@@ -8,6 +8,8 @@ TagManager:
   - StartGame
   - LevelOneMap
   - SelectStage
+  - Back
+  - MenuStatus
   layers:
   - Default
   - TransparentFX
