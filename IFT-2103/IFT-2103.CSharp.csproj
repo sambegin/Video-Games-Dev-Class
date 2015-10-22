@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\CameraObstructionWatcher.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\MainMenuBehavior.cs" />
+    <Compile Include="Assets\Scripts\MainMenuUIBehavior.cs" />
     <Compile Include="Assets\Scripts\MouseOrbitImproved.cs" />
     <Compile Include="Assets\Scripts\PauseManager.cs" />
     <Compile Include="Assets\Scripts\PauseMenuActionsController.cs" />
