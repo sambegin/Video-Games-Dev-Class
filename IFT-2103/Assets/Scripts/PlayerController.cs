@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private float jumpHeight = 20.0f;
     private Vector3 moveDirection = Vector3.zero;
     private float gravity = 50.0f;
+    private float inAirDrift = 60.0f;
 
     void FixedUpdate()
     {
@@ -29,26 +30,17 @@ public class PlayerController : MonoBehaviour
     private void handleJump()
     {
         CharacterController controller = GetComponent<CharacterController>();
-
         if (controller.isGrounded)
         {
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            moveDirection = transform.TransformDirection(moveDirection);
-            moveDirection *= speed;
-
+            moveDirection = transform.forward * speed * Input.GetAxis("Vertical") + transform.right * speed * Input.GetAxis("Horizontal");
             if (Input.GetButton("Jump"))
             {
                 moveDirection.y = jumpHeight;
             }
-
-
         }
         else
         {
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), moveDirection.y, Input.GetAxis("Vertical"));
-            moveDirection = transform.TransformDirection(moveDirection);
-            moveDirection.x *= speed;
-            moveDirection.z *= speed;
+            moveDirection += transform.TransformDirection(new Vector3(Input.GetAxis("Horizontal") * Time.deltaTime * inAirDrift, 0, Input.GetAxis("Vertical") * Time.deltaTime * inAirDrift));
         }
 
         moveDirection.y -= gravity * Time.deltaTime;
