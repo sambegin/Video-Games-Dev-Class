@@ -10,6 +10,9 @@ TagManager:
   - SelectStage
   - Back
   - MenuStatus
+  - StageOne
+  - StageTwo
+  - StageThree
   layers:
   - Default
   - TransparentFX
