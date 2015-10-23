@@ -70,7 +70,6 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraObstructionWatcher.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Lightable.cs" />
     <Compile Include="Assets\Scripts\Menus\MainMenuBehavior.cs" />
     <Compile Include="Assets\Scripts\Menus\PauseManager.cs" />
     <Compile Include="Assets\Scripts\Menus\PauseMenuActionsController.cs" />
