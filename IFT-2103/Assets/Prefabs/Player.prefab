@@ -316,6 +316,7 @@ MeshRenderer:
   m_ReceiveShadows: 1
   m_Materials:
   - {fileID: 2100000, guid: 83517940ce883cf43b13f55f6316b54c, type: 2}
+  - {fileID: 2100000, guid: 5946612f7a9bbeb4cb1985791917738a, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -473,6 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40503f788767e2a4f8abcac648af93b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lightedMaterial: {fileID: 2100000, guid: 9fee48fe1e7b2c14586ad26e66cd964d, type: 2}
 --- !u!114 &11443538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -619,6 +621,10 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: speed
       value: 4
       objectReference: {fileID: 0}
@@ -714,6 +720,10 @@ Prefab:
       propertyPath: m_Name
       value: WeaponTip
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5946612f7a9bbeb4cb1985791917738a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 183598}

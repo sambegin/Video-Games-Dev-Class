@@ -6,17 +6,18 @@ public class Weapon : MonoBehaviour
 {
 
     LineRenderer lineRenderer;
+    TargetLightSwitcher targetController;
+    public Material lightedMaterial;
+    //TODO: Make laser more realistic
     //EllipsoidParticleEmitter particleEmitter;
 
-    // Use this for initialization
     void Start()
     {
         this.lineRenderer = GetComponent<LineRenderer>();
         this.lineRenderer.enabled = false;
-        //this.particleEmitter = GetComponent<EllipsoidParticleEmitter>();
+        this.targetController = new TargetLightSwitcher();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
@@ -32,7 +33,7 @@ public class Weapon : MonoBehaviour
         while (Input.GetButton("Fire1"))
         {
             RaycastHit hitSpot;
-            //Vector3 forwardDirection = transform.up;
+            
             bool asHitOnSomething = Physics.Raycast(transform.position, transform.forward, out hitSpot);
             
             
@@ -40,23 +41,20 @@ public class Weapon : MonoBehaviour
             if (asHitOnSomething)
             {
                 lineRenderer.SetPosition(1, hitSpot.point);
-
+                targetController.isHit(hitSpot.transform.GetComponentInParent<Renderer>(), lightedMaterial);
             }
             else
             {
-                //TODO: Not necessarly in straight line.
                 int farAway = 1000;
                 lineRenderer.SetPosition(1, ray.GetPoint(farAway));
             }
             lineRenderer.SetPosition(0, transform.position);
 
             Debug.DrawRay(ray.origin, ray.direction);
-            //this.particleEmitter.emit = true;
             yield return null;
         }
 
         stopShooting();
-
 
     }
 
