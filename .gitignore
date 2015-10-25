@@ -52,3 +52,5 @@ bld/
 IFT-2103/IFT-2103.sln
 IFT-2103/Assets/UnityTestTools/Examples/
 IFT-2103/Shine_Data/output_log.txt
+IFT-2103/Assembly-CSharp-Editor.csproj
+IFT-2103/Assembly-CSharp.csproj
