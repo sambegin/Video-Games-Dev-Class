@@ -35,13 +35,31 @@ public class Weapon : MonoBehaviour
             RaycastHit hitSpot;
             
             bool asHitOnSomething = Physics.Raycast(transform.position, transform.forward, out hitSpot);
+
+            lineRenderer.SetPosition(1, hitSpot.point);
             
-            
+
             Ray ray = new Ray(transform.position, transform.forward);
             if (asHitOnSomething)
             {
-                lineRenderer.SetPosition(1, hitSpot.point);
-                targetController.isHit(hitSpot.transform.GetComponentInParent<Renderer>(), lightedMaterial);
+
+                Texture2D texture = hitSpot.transform.gameObject.GetComponent<Renderer>().material.mainTexture as Texture2D;
+
+                Vector2 pixelUV = hitSpot.textureCoord;
+
+                pixelUV.x *= texture.width;
+                pixelUV.y *= texture.height;
+                texture.SetPixel((int)pixelUV.x, (int)pixelUV.y, Color.blue);
+                texture.SetPixel((int)pixelUV.x+1, (int)pixelUV.y+1, Color.blue);
+                texture.Apply();
+
+                //hitSpot.transform.gameObject.GetComponent<Renderer>().material.mainTexture = texture;
+                
+
+
+
+
+                //targetController.isHit(hitSpot.transform.GetComponentInParent<Renderer>(), lightedMaterial);
             }
             else
             {
