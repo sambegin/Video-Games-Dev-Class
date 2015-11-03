@@ -5,6 +5,7 @@ using System;
 public class Weapon : MonoBehaviour
 {
 
+    public Shader lightableCustomShader;
     LineRenderer lineRenderer;
     TargetLightSwitcher targetController;
     public Material lightedMaterial;
@@ -43,23 +44,10 @@ public class Weapon : MonoBehaviour
             if (asHitOnSomething)
             {
 
-                Texture2D texture = hitSpot.transform.gameObject.GetComponent<Renderer>().material.mainTexture as Texture2D;
+                Shader shader = hitSpot.transform.gameObject.GetComponent<Renderer>().material.shader;
 
-                Vector2 pixelUV = hitSpot.textureCoord;
-
-                pixelUV.x *= texture.width;
-                pixelUV.y *= texture.height;
-                texture.SetPixel((int)pixelUV.x, (int)pixelUV.y, Color.blue);
-                texture.SetPixel((int)pixelUV.x+1, (int)pixelUV.y+1, Color.blue);
-                texture.Apply();
-
-                //hitSpot.transform.gameObject.GetComponent<Renderer>().material.mainTexture = texture;
-                
-
-
-
-
-                //targetController.isHit(hitSpot.transform.GetComponentInParent<Renderer>(), lightedMaterial);
+                hitSpot.transform.gameObject.GetComponent<Renderer>().material.shader = lightableCustomShader;
+              
             }
             else
             {

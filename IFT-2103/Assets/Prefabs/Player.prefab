@@ -474,6 +474,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40503f788767e2a4f8abcac648af93b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lightableCustomShader: {fileID: 4800000, guid: ae81fcfe4de863a428648d9ec0f126b6,
+    type: 3}
   lightedMaterial: {fileID: 2100000, guid: 9fee48fe1e7b2c14586ad26e66cd964d, type: 2}
 --- !u!114 &11443538
 MonoBehaviour:
