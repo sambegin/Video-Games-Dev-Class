@@ -11,6 +11,7 @@ public class Weapon : MonoBehaviour
     public Material lightedMaterial;
     //TODO: Make laser more realistic
     //EllipsoidParticleEmitter particleEmitter;
+    private Texture2D pointsShotInfo = null;
 
     void Start()
     {
@@ -34,20 +35,45 @@ public class Weapon : MonoBehaviour
         while (Input.GetButton("Fire1"))
         {
             RaycastHit hitSpot;
-            
+
             bool asHitOnSomething = Physics.Raycast(transform.position, transform.forward, out hitSpot);
 
             lineRenderer.SetPosition(1, hitSpot.point);
-            
+
 
             Ray ray = new Ray(transform.position, transform.forward);
             if (asHitOnSomething)
             {
+                Material material = hitSpot.transform.gameObject.GetComponent<Renderer>().material;
+                if (pointsShotInfo == null)//TODO temporary
+                {
+                    pointsShotInfo = new Texture2D(material.mainTexture.width, material.mainTexture.height);
 
-                Shader shader = hitSpot.transform.gameObject.GetComponent<Renderer>().material.shader;
 
-                hitSpot.transform.gameObject.GetComponent<Renderer>().material.shader = lightableCustomShader;
-              
+                    //Initialise to all black
+                    Color[] pixels = pointsShotInfo.GetPixels();
+                    for (int i = 0; i < pixels.Length; i++)
+                    {
+                        pixels[i] = new Color(1, 0, 0, 1);
+                    }
+                    pointsShotInfo.SetPixels(pixels);
+                    material.SetTexture("_PointsShotInfo", pointsShotInfo);
+                    hitSpot.transform.gameObject.GetComponent<Renderer>().material = material;
+                }
+
+
+                float coordX = hitSpot.textureCoord.x * material.mainTexture.width;
+                float coordY = hitSpot.textureCoord.y * material.mainTexture.height;
+
+                pointsShotInfo.SetPixel((int)coordX, (int)coordY, new Color(0, 0, 0, 0));
+                pointsShotInfo.SetPixel((int)coordX + 1, (int)coordY, new Color(0, 0, 0, 0));
+                pointsShotInfo.SetPixel((int)coordX - 1, (int)coordY, new Color(0, 0, 0, 0));
+
+                pointsShotInfo.SetPixel((int)coordX, (int)coordY+1, new Color(0, 0, 0, 0));
+                pointsShotInfo.SetPixel((int)coordX, (int)coordY-1, new Color(0, 0, 0, 0));
+
+                pointsShotInfo.Apply();
+
             }
             else
             {
