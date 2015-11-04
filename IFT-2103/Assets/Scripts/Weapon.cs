@@ -52,11 +52,13 @@ public class Weapon : MonoBehaviour
 
                     //Initialise to all black
                     Color[] pixels = pointsShotInfo.GetPixels();
+                    Color darkColor = new Color(0, 0, 0, 1);
                     for (int i = 0; i < pixels.Length; i++)
                     {
-                        pixels[i] = new Color(1, 0, 0, 1);
+                        pixels[i] = darkColor;
                     }
                     pointsShotInfo.SetPixels(pixels);
+                    pointsShotInfo.alphaIsTransparency = true;
                     material.SetTexture("_PointsShotInfo", pointsShotInfo);
                     hitSpot.transform.gameObject.GetComponent<Renderer>().material = material;
                 }
@@ -65,12 +67,13 @@ public class Weapon : MonoBehaviour
                 float coordX = hitSpot.textureCoord.x * material.mainTexture.width;
                 float coordY = hitSpot.textureCoord.y * material.mainTexture.height;
 
-                pointsShotInfo.SetPixel((int)coordX, (int)coordY, new Color(0, 0, 0, 0));
-                pointsShotInfo.SetPixel((int)coordX + 1, (int)coordY, new Color(0, 0, 0, 0));
-                pointsShotInfo.SetPixel((int)coordX - 1, (int)coordY, new Color(0, 0, 0, 0));
+                Color transparentColor = new Color(1, 1, 1, 0);
+                pointsShotInfo.SetPixel((int)coordX, (int)coordY, transparentColor);
+                pointsShotInfo.SetPixel((int)coordX + 1, (int)coordY, transparentColor);
+                pointsShotInfo.SetPixel((int)coordX - 1, (int)coordY, transparentColor);
 
-                pointsShotInfo.SetPixel((int)coordX, (int)coordY+1, new Color(0, 0, 0, 0));
-                pointsShotInfo.SetPixel((int)coordX, (int)coordY-1, new Color(0, 0, 0, 0));
+                pointsShotInfo.SetPixel((int)coordX, (int)coordY+1, transparentColor);
+                pointsShotInfo.SetPixel((int)coordX, (int)coordY-1, transparentColor);
 
                 pointsShotInfo.Apply();
 

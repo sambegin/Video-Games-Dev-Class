@@ -15,7 +15,7 @@
 	sampler2D _PointsShotInfo;
 	void surf(Input IN, inout SurfaceOutput o) {
 		o.Albedo = tex2D(_MainTex, IN.uv_MainTex).rgb;
-		o.Albedo += tex2D(_PointsShotInfo, IN.uv_PointsShotInfo).rgb;
+		o.Albedo *= tex2D(_PointsShotInfo, IN.uv_PointsShotInfo).rgb;
 	}
 	ENDCG
 	}
