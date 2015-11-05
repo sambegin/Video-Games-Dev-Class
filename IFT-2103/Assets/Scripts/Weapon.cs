@@ -43,7 +43,6 @@ public class Weapon : MonoBehaviour
 
                 if(objectShot != null)
                 {
-                    Debug.Log("Object is lightable");
                     objectShot.lightUp(hitSpot);
                 }
                
