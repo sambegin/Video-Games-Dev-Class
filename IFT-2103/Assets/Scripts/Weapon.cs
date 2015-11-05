@@ -4,20 +4,14 @@ using System;
 
 public class Weapon : MonoBehaviour
 {
-
-    public Shader lightableCustomShader;
     LineRenderer lineRenderer;
-    TargetLightSwitcher targetController;
-    public Material lightedMaterial;
     //TODO: Make laser more realistic
     //EllipsoidParticleEmitter particleEmitter;
-    private Texture2D pointsShotInfo = null;
 
     void Start()
     {
         this.lineRenderer = GetComponent<LineRenderer>();
         this.lineRenderer.enabled = false;
-        this.targetController = new TargetLightSwitcher();
     }
 
     void Update()
@@ -44,39 +38,16 @@ public class Weapon : MonoBehaviour
             Ray ray = new Ray(transform.position, transform.forward);
             if (asHitOnSomething)
             {
-                Material material = hitSpot.transform.gameObject.GetComponent<Renderer>().material;
-                if (pointsShotInfo == null)//TODO temporary
+                Lightable objectShot = hitSpot.transform.GetComponent<Lightable>();
+                //Material material = hitSpot.transform.gameObject.GetComponent<Renderer>().material;
+
+                if(objectShot != null)
                 {
-                    pointsShotInfo = new Texture2D(material.mainTexture.width, material.mainTexture.height);
-
-
-                    //Initialise to all black
-                    Color[] pixels = pointsShotInfo.GetPixels();
-                    Color darkColor = new Color(0, 0, 0, 1);
-                    for (int i = 0; i < pixels.Length; i++)
-                    {
-                        pixels[i] = darkColor;
-                    }
-                    pointsShotInfo.SetPixels(pixels);
-                    pointsShotInfo.alphaIsTransparency = true;
-                    material.SetTexture("_PointsShotInfo", pointsShotInfo);
-                    hitSpot.transform.gameObject.GetComponent<Renderer>().material = material;
+                    Debug.Log("Object is lightable");
+                    objectShot.lightUp(hitSpot);
                 }
-
-
-                float coordX = hitSpot.textureCoord.x * material.mainTexture.width;
-                float coordY = hitSpot.textureCoord.y * material.mainTexture.height;
-
-                Color transparentColor = new Color(1, 1, 1, 0);
-                pointsShotInfo.SetPixel((int)coordX, (int)coordY, transparentColor);
-                pointsShotInfo.SetPixel((int)coordX + 1, (int)coordY, transparentColor);
-                pointsShotInfo.SetPixel((int)coordX - 1, (int)coordY, transparentColor);
-
-                pointsShotInfo.SetPixel((int)coordX, (int)coordY+1, transparentColor);
-                pointsShotInfo.SetPixel((int)coordX, (int)coordY-1, transparentColor);
-
-                pointsShotInfo.Apply();
-
+               
+                
             }
             else
             {
