@@ -21,7 +21,7 @@ public class Lightable : MonoBehaviour
             material.SetTexture("_PointsShotInfo", darkeningLayer);
             //Initialise to all black
             Color[] pixels = darkeningLayer.GetPixels();
-            Debug.Log(material.name+": " + pixels);
+            Debug.Log(material.name + ": " + pixels);
             Color darkColor = new Color(0, 0, 0, 1);
             for (int i = 0; i < pixels.Length; i++)
             {
@@ -30,8 +30,8 @@ public class Lightable : MonoBehaviour
             darkeningLayer.SetPixels(pixels);
             darkeningLayer.Apply();
 
-            
-            
+
+
 
 
             materialsStored.Add(material, darkeningLayer);//Should i store pointers?
@@ -73,7 +73,7 @@ public class Lightable : MonoBehaviour
         pointsShotInfo.SetPixel((int)coordX, (int)coordY - 1, transparentColor);
         pointsShotInfo.SetPixel((int)coordX, (int)coordY - 2, transparentColor);
 
-        pointsShotInfo.SetPixel((int)coordX + 1, (int)coordY+1, transparentColor);
+        pointsShotInfo.SetPixel((int)coordX + 1, (int)coordY + 1, transparentColor);
         pointsShotInfo.SetPixel((int)coordX - 1, (int)coordY + 1, transparentColor);
         pointsShotInfo.SetPixel((int)coordX - 1, (int)coordY - 1, transparentColor);
         pointsShotInfo.SetPixel((int)coordX + 1, (int)coordY - 1, transparentColor);
@@ -88,27 +88,35 @@ public class Lightable : MonoBehaviour
         int submeshesCount = mesh.subMeshCount;
         int materialIndex = -1;
 
-        for(int i=0; i < submeshesCount; i++)
+        int lookupIndex1 = mesh.triangles[triangleIndex * 3];
+        int lookupIndex2 = mesh.triangles[triangleIndex * 3 + 1];
+        int lookupIndex3 = mesh.triangles[triangleIndex * 3 + 2];
+
+        for (int i = 0; i < submeshesCount; i++)
         {
             int[] triangles = mesh.GetTriangles(i);
-            for(int j=0; j < triangles.Length; j++)
+            for (int j = 0; j < triangles.Length; j += 3)
             {
-                if(triangles[j] == triangleIndex)
+                if (triangles[j] == lookupIndex1 && triangles[j + 1] == lookupIndex2 && triangles[j + 2] == lookupIndex3)
                 {
                     materialIndex = i;
                     break;
                 }
             }
+            if (materialIndex != -1)
+            {
+                break;
+            }
         }
 
-        if(materialIndex != -1)
-        {
-            Debug.Log(this.GetComponent<Renderer>().materials[materialIndex]);
-        }
-       
+        //if (materialIndex != -1)
+        //{
+        //    Debug.Log(this.GetComponent<Renderer>().materials[materialIndex]);
+        //}
 
 
-
-        return this.GetComponent<Renderer>().material;
+        Debug.Log(this.GetComponent<Renderer>().materials[materialIndex]);
+        return this.GetComponent<Renderer>().materials[materialIndex];
+        //return this.GetComponent<Renderer>().material;
     }
 }
