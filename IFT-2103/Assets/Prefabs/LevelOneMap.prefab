@@ -378,7 +378,7 @@ GameObject:
   - 114: {fileID: 11456514}
   - 64: {fileID: 6427282}
   m_Layer: 0
-  m_Name: bob
+  m_Name: cubeTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2642,6 +2642,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Name
+      value: cubeTest
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
