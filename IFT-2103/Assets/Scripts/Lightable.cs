@@ -5,23 +5,13 @@ using System.Collections.Generic;
 
 public class Lightable : MonoBehaviour
 {
-    private Dictionary<Material, Texture2D> allMaterialsAndTheirDarkeningLayer = new Dictionary<Material, Texture2D>();
+    private Dictionary<int, Color[]> allMaterialsAndTheirDarkeningLayer = new Dictionary<int, Color[]>();
+    private Map map;
 
-    public Dictionary<Material, Texture2D> AllMaterialsAndTheirDarkeningLayer
+    void Start()
     {
-        get
-        {
-            return allMaterialsAndTheirDarkeningLayer;
-        }
+        map = GetComponentInParent<Map>();
 
-        set
-        {
-            allMaterialsAndTheirDarkeningLayer = value;
-        }
-    }
-
-    void Awake()
-    {
         Material[] materialsOfTarget = this.GetComponent<Renderer>().materials;
         for (int indexCurrentMaterial = 0; indexCurrentMaterial < materialsOfTarget.Length; indexCurrentMaterial++)
         {
@@ -29,9 +19,10 @@ public class Lightable : MonoBehaviour
 
             Texture2D darkeningLayer = initializeDarkeningLayerOn(currentMaterial);
 
-            AllMaterialsAndTheirDarkeningLayer.Add(currentMaterial, darkeningLayer);
-        }
+            allMaterialsAndTheirDarkeningLayer.Add(currentMaterial.GetInstanceID(), darkeningLayer.GetPixels());
 
+            map.addLightableSurface(darkeningLayer);
+        }
     }
 
     private static Texture2D initializeDarkeningLayerOn(Material currentMaterial)
@@ -64,42 +55,65 @@ public class Lightable : MonoBehaviour
             material = defaultMaterial;
         }
 
-        int anyNumber = 1;
-        Texture2D darkeningLayer = new Texture2D(anyNumber, anyNumber);
-        AllMaterialsAndTheirDarkeningLayer.TryGetValue(material, out darkeningLayer);
-
-        Camera camera = FindObjectOfType<Camera>();
-        Matrix4x4 matrix = camera.cameraToWorldMatrix;
-        Matrix4x4 inverseMatrix = matrix.inverse;
-        //TODO Change the size of the lightning area proportionnaly to the texel size on the screen.
+        Color[] pixelsOfDarkeningLayer;
+        allMaterialsAndTheirDarkeningLayer.TryGetValue(material.GetInstanceID(), out pixelsOfDarkeningLayer);
 
         float coordX = hitSpot.textureCoord.x * material.mainTexture.width;
         float coordY = hitSpot.textureCoord.y * material.mainTexture.height;
 
-        Color transparentColor = new Color(1, 1, 1, 0);
-        lightUpACircle(darkeningLayer, coordX, coordY, transparentColor);
+        lightUpACircle(ref pixelsOfDarkeningLayer, coordX, coordY, map, material.mainTexture.width, material.mainTexture.height, ref material);
+        Debug.Log(map.getPercentageLighted());
     }
 
-    private static void lightUpACircle(Texture2D darkeningLayer, float coordX, float coordY, Color transparentColor)
+    private static void lightUpACircle(ref Color[] pixels, float coordX, float coordY, Map map, int darkeningLayerWidth, int darkeningLayerHeight, ref Material material)
     {
-        darkeningLayer.SetPixel((int)coordX, (int)coordY, transparentColor);
+        int numberOfTexelsChanged = 0;
+        numberOfTexelsChanged = changeColor(coordX, coordY, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
 
-        darkeningLayer.SetPixel((int)coordX + 2, (int)coordY, transparentColor);
-        darkeningLayer.SetPixel((int)coordX + 1, (int)coordY, transparentColor);
-        darkeningLayer.SetPixel((int)coordX - 1, (int)coordY, transparentColor);
-        darkeningLayer.SetPixel((int)coordX - 2, (int)coordY, transparentColor);
+        numberOfTexelsChanged = changeColor(coordX + 2, coordY, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
+        numberOfTexelsChanged = changeColor(coordX + 1, coordY, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
+        numberOfTexelsChanged = changeColor(coordX - 1, coordY, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
+        numberOfTexelsChanged = changeColor(coordX - 2, coordY, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
 
-        darkeningLayer.SetPixel((int)coordX, (int)coordY + 2, transparentColor);
-        darkeningLayer.SetPixel((int)coordX, (int)coordY + 1, transparentColor);
-        darkeningLayer.SetPixel((int)coordX, (int)coordY - 1, transparentColor);
-        darkeningLayer.SetPixel((int)coordX, (int)coordY - 2, transparentColor);
+        numberOfTexelsChanged = changeColor(coordX, coordY + 2, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
+        numberOfTexelsChanged = changeColor(coordX, coordY + 1, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
+        numberOfTexelsChanged = changeColor(coordX, coordY - 1, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
+        numberOfTexelsChanged = changeColor(coordX, coordY - 2, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
 
-        darkeningLayer.SetPixel((int)coordX + 1, (int)coordY + 1, transparentColor);
-        darkeningLayer.SetPixel((int)coordX - 1, (int)coordY + 1, transparentColor);
-        darkeningLayer.SetPixel((int)coordX - 1, (int)coordY - 1, transparentColor);
-        darkeningLayer.SetPixel((int)coordX + 1, (int)coordY - 1, transparentColor);
+        numberOfTexelsChanged = changeColor(coordX + 1, coordY + 1, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
+        numberOfTexelsChanged = changeColor(coordX - 1, coordY + 1, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
+        numberOfTexelsChanged = changeColor(coordX - 1, coordY - 1, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
+        numberOfTexelsChanged = changeColor(coordX + 1, coordY - 1, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
 
+        Texture2D darkeningLayer = (Texture2D)material.GetTexture("_PointsShotInfo");
+        darkeningLayer.SetPixels(pixels);
         darkeningLayer.Apply();
+
+
+
+
+        map.hasLightedSurface(numberOfTexelsChanged);
+    }
+
+    private static int changeColor(float coordX, float coordY, ref Color[] pixels, int darkeningLayerWidth, int darkeningLayerHeight, int numberOfPixelsChanged)
+    {
+        Color transparentColor = new Color(1, 1, 1, 0);
+        int index = calculatePixelIndex(darkeningLayerWidth, darkeningLayerHeight, coordX, coordY);
+
+        if (pixels[index] != transparentColor)
+        {
+            pixels[index] = transparentColor;
+            numberOfPixelsChanged += 1;
+        }
+
+        return numberOfPixelsChanged;
+    }
+
+    private static int calculatePixelIndex(int textureWidth, int textureHeight, float coordX, float coordY)
+    {
+        //int index = (textureWidth * (int)(coordY - 1)) + (textureWidth - (textureWidth % (int)coordX)) - 1;
+        int index = textureWidth * (int)coordY + (int)coordX;
+        return index;
     }
 
     private Material findMaterialThatIsShot(RaycastHit hitSpot)

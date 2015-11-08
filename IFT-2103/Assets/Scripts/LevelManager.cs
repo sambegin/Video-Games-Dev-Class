@@ -4,7 +4,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 
-public class GameManager : MonoBehaviour {
+public class LevelManager : MonoBehaviour {
 
     public GameObject mapPrefab;
     public GameObject playerPrefab;
