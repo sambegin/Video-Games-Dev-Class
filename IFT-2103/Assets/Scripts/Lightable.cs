@@ -62,7 +62,6 @@ public class Lightable : MonoBehaviour
         float coordY = hitSpot.textureCoord.y * material.mainTexture.height;
 
         lightUpACircle(ref pixelsOfDarkeningLayer, coordX, coordY, map, material.mainTexture.width, material.mainTexture.height, ref material);
-        Debug.Log(map.getPercentageLighted());
     }
 
     private static void lightUpACircle(ref Color[] pixels, float coordX, float coordY, Map map, int darkeningLayerWidth, int darkeningLayerHeight, ref Material material)
@@ -89,9 +88,6 @@ public class Lightable : MonoBehaviour
         darkeningLayer.SetPixels(pixels);
         darkeningLayer.Apply();
 
-
-
-
         map.hasLightedSurface(numberOfTexelsChanged);
     }
 
@@ -111,7 +107,6 @@ public class Lightable : MonoBehaviour
 
     private static int calculatePixelIndex(int textureWidth, int textureHeight, float coordX, float coordY)
     {
-        //int index = (textureWidth * (int)(coordY - 1)) + (textureWidth - (textureWidth % (int)coordX)) - 1;
         int index = textureWidth * (int)coordY + (int)coordX;
         return index;
     }
@@ -151,7 +146,7 @@ public class Lightable : MonoBehaviour
         }
         catch (IndexOutOfRangeException exception)
         {
-            throw new MaterialNotFoundException(exception);
+            throw new MaterialNotFoundException("The exact material that was shot is not found", exception);
         }
     }
 
