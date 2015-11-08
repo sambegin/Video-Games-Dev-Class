@@ -56,10 +56,36 @@ public class Lightable : MonoBehaviour
         Texture2D darkeningLayer = new Texture2D(anyNumber, anyNumber);
         allMaterialsAndTheirDarkeningLayer.TryGetValue(material, out darkeningLayer);
 
+        Camera camera = FindObjectOfType<Camera>();
+        Matrix4x4 matrix = camera.cameraToWorldMatrix;
+        Matrix4x4 inverseMatrix = matrix.inverse;
+        //TODO Change the size of the lightning area proportionnaly to the texel size on the screen.
+
         float coordX = hitSpot.textureCoord.x * material.mainTexture.width;
         float coordY = hitSpot.textureCoord.y * material.mainTexture.height;
 
         Color transparentColor = new Color(1, 1, 1, 0);
+        lightUpACircle(darkeningLayer, coordX, coordY, transparentColor);
+    }
+
+    private static void lightUpACircle(Texture2D darkeningLayer, float coordX, float coordY, Color transparentColor)
+    {
+        //int radius = 5;
+
+        //for (double i = 0.0; i < 360.0; i += 0.1)
+
+        //{
+
+        //    double angle = i * System.Math.PI / 180;
+
+        //    int x = (int)(50 + radius * System.Math.Cos(angle));
+
+        //    int y = (int)(50 + radius * System.Math.Sin(angle));
+
+        //    darkeningLayer.SetPixel(x, y, transparentColor);
+        //}
+
+
         darkeningLayer.SetPixel((int)coordX, (int)coordY, transparentColor);
 
         darkeningLayer.SetPixel((int)coordX + 2, (int)coordY, transparentColor);
