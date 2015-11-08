@@ -1,13 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
 public class Lightable : MonoBehaviour
 {
-    private System.Collections.Generic.Dictionary<Material, Texture2D> allMaterialsAndTheirDarkeningLayer = new System.Collections.Generic.Dictionary<Material, Texture2D>();
+    private Dictionary<Material, Texture2D> allMaterialsAndTheirDarkeningLayer = new Dictionary<Material, Texture2D>();
 
+    public Dictionary<Material, Texture2D> AllMaterialsAndTheirDarkeningLayer
+    {
+        get
+        {
+            return allMaterialsAndTheirDarkeningLayer;
+        }
 
-    // Use this for initialization
+        set
+        {
+            allMaterialsAndTheirDarkeningLayer = value;
+        }
+    }
+
     void Awake()
     {
         Material[] materialsOfTarget = this.GetComponent<Renderer>().materials;
@@ -17,7 +29,7 @@ public class Lightable : MonoBehaviour
 
             Texture2D darkeningLayer = initializeDarkeningLayerOn(currentMaterial);
 
-            allMaterialsAndTheirDarkeningLayer.Add(currentMaterial, darkeningLayer);
+            AllMaterialsAndTheirDarkeningLayer.Add(currentMaterial, darkeningLayer);
         }
 
     }
@@ -54,7 +66,7 @@ public class Lightable : MonoBehaviour
 
         int anyNumber = 1;
         Texture2D darkeningLayer = new Texture2D(anyNumber, anyNumber);
-        allMaterialsAndTheirDarkeningLayer.TryGetValue(material, out darkeningLayer);
+        AllMaterialsAndTheirDarkeningLayer.TryGetValue(material, out darkeningLayer);
 
         Camera camera = FindObjectOfType<Camera>();
         Matrix4x4 matrix = camera.cameraToWorldMatrix;
@@ -70,22 +82,6 @@ public class Lightable : MonoBehaviour
 
     private static void lightUpACircle(Texture2D darkeningLayer, float coordX, float coordY, Color transparentColor)
     {
-        //int radius = 5;
-
-        //for (double i = 0.0; i < 360.0; i += 0.1)
-
-        //{
-
-        //    double angle = i * System.Math.PI / 180;
-
-        //    int x = (int)(50 + radius * System.Math.Cos(angle));
-
-        //    int y = (int)(50 + radius * System.Math.Sin(angle));
-
-        //    darkeningLayer.SetPixel(x, y, transparentColor);
-        //}
-
-
         darkeningLayer.SetPixel((int)coordX, (int)coordY, transparentColor);
 
         darkeningLayer.SetPixel((int)coordX + 2, (int)coordY, transparentColor);
