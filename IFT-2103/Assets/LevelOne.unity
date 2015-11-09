@@ -116,6 +116,7 @@ MonoBehaviour:
   mapPrefab: {fileID: 168760, guid: 952ddb1a10124194dbae58f7a2adbe2a, type: 2}
   playerPrefab: {fileID: 183598, guid: a5f8a8a79841de843bb4239ee07d3b99, type: 2}
   pauseMenu: {fileID: 122714, guid: 9800de70ad7bf4848a6011ddd45107e0, type: 2}
+  HUD: {fileID: 130178, guid: c8dee0e1a46cbcc4790eb8259b2381be, type: 2}
 --- !u!4 &519155566
 Transform:
   m_ObjectHideFlags: 0
@@ -231,6 +232,10 @@ Prefab:
       propertyPath: m_Name
       value: LevelOneManager
       objectReference: {fileID: 0}
+    - target: {fileID: 11457148, guid: 77686655b40433f439c5aa3ee427fb01, type: 2}
+      propertyPath: HUD
+      value: 
+      objectReference: {fileID: 130178, guid: c8dee0e1a46cbcc4790eb8259b2381be, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77686655b40433f439c5aa3ee427fb01, type: 2}
   m_IsPrefabParent: 0

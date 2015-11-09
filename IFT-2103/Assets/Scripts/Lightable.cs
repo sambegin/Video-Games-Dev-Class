@@ -96,6 +96,7 @@ public class Lightable : MonoBehaviour
         Color transparentColor = new Color(1, 1, 1, 0);
         int index = calculatePixelIndex(darkeningLayerWidth, darkeningLayerHeight, coordX, coordY);
 
+        //TODO can ben out of index sometimes
         if (pixels[index] != transparentColor)
         {
             pixels[index] = transparentColor;

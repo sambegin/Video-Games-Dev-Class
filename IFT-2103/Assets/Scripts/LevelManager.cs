@@ -9,13 +9,20 @@ public class LevelManager : MonoBehaviour {
     public GameObject mapPrefab;
     public GameObject playerPrefab;
     public GameObject pauseMenu;
+    public GameObject HUD;
 
 	// Use this for initialization
 	void Start () {
         loadMap();
+        loadHud();
         loadPlayer();
         loadPauseMenu();
         setupCursor();
+    }
+
+    private void loadHud()
+    {
+        Instantiate(HUD);
     }
 
     private void loadMap()
@@ -24,11 +31,10 @@ public class LevelManager : MonoBehaviour {
         Instantiate(mapPrefab, new Vector3(), new Quaternion());
     }
 
-    private GameObject loadPlayer()
+    private void loadPlayer()
     {
         Vector3 initialPlayerPosition = new Vector3(0, 2f, 0);
-        GameObject player = Instantiate(playerPrefab, initialPlayerPosition, new Quaternion()) as GameObject;
-        return player;
+        Instantiate(playerPrefab, initialPlayerPosition, new Quaternion());
     }
 
     private void loadPauseMenu()
