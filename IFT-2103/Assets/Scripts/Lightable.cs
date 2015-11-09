@@ -61,12 +61,18 @@ public class Lightable : MonoBehaviour
         float coordX = hitSpot.textureCoord.x * material.mainTexture.width;
         float coordY = hitSpot.textureCoord.y * material.mainTexture.height;
 
-        lightUpACircle(ref pixelsOfDarkeningLayer, coordX, coordY, map, material.mainTexture.width, material.mainTexture.height, ref material);
+        int numberOfTexelsChanged = 0;
+        Texture2D darkeningLayer = (Texture2D)material.GetTexture("_PointsShotInfo");
+        numberOfTexelsChanged = lightUpACircle(ref pixelsOfDarkeningLayer, coordX, coordY, ref darkeningLayer);
+        map.hasLightedSurface(numberOfTexelsChanged);
     }
 
-    private static void lightUpACircle(ref Color[] pixels, float coordX, float coordY, Map map, int darkeningLayerWidth, int darkeningLayerHeight, ref Material material)
+    private static int lightUpACircle(ref Color[] pixels, float coordX, float coordY, ref Texture2D darkeningLayer)
     {
         int numberOfTexelsChanged = 0;
+
+        int darkeningLayerWidth = darkeningLayer.width;
+        int darkeningLayerHeight = darkeningLayer.height;
         numberOfTexelsChanged = changeColor(coordX, coordY, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
 
         numberOfTexelsChanged = changeColor(coordX + 2, coordY, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
@@ -84,11 +90,10 @@ public class Lightable : MonoBehaviour
         numberOfTexelsChanged = changeColor(coordX - 1, coordY - 1, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
         numberOfTexelsChanged = changeColor(coordX + 1, coordY - 1, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
 
-        Texture2D darkeningLayer = (Texture2D)material.GetTexture("_PointsShotInfo");
         darkeningLayer.SetPixels(pixels);
         darkeningLayer.Apply();
 
-        map.hasLightedSurface(numberOfTexelsChanged);
+        return numberOfTexelsChanged;
     }
 
     private static int changeColor(float coordX, float coordY, ref Color[] pixels, int darkeningLayerWidth, int darkeningLayerHeight, int numberOfPixelsChanged)
@@ -96,7 +101,7 @@ public class Lightable : MonoBehaviour
         Color transparentColor = new Color(1, 1, 1, 0);
         int index = calculatePixelIndex(darkeningLayerWidth, darkeningLayerHeight, coordX, coordY);
 
-        //TODO can ben out of index sometimes
+        //TODO can ben out of index sometimes. Especially when shooting on the exact edges.
         if (pixels[index] != transparentColor)
         {
             pixels[index] = transparentColor;
