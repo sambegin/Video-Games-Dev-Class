@@ -7,6 +7,7 @@ public class Lightable : MonoBehaviour
 {
     private Dictionary<int, Color[]> allMaterialsAndTheirDarkeningLayer = new Dictionary<int, Color[]>();
     private Map map;
+    private static Color TRANSPARENT_COLOR = new Color(1, 1, 1, 0);
 
     void Start()
     {
@@ -98,14 +99,17 @@ public class Lightable : MonoBehaviour
 
     private static int changeColor(float coordX, float coordY, ref Color[] texels, int darkeningLayerWidth, int darkeningLayerHeight)
     {
-        Color transparentColor = new Color(1, 1, 1, 0);
+        if (coordX < 0 || coordY < 0)
+        {
+            return 0;
+        }
+
         int index = calculateTexelIndex(darkeningLayerWidth, darkeningLayerHeight, coordX, coordY);
 
         int numberOfTexelsChanged = 0;
-        //TODO can ben out of index sometimes. Especially when shooting on the exact edges.
-        if (texels[index] != transparentColor)
+        if (texels[index] != TRANSPARENT_COLOR)
         {
-            texels[index] = transparentColor;
+            texels[index] = TRANSPARENT_COLOR;
             numberOfTexelsChanged += 1;
         }
 
