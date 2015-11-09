@@ -71,24 +71,24 @@ public class Lightable : MonoBehaviour
     {
         int numberOfTexelsChanged = 0;
 
-        int darkeningLayerWidth = darkeningLayer.width;
-        int darkeningLayerHeight = darkeningLayer.height;
-        numberOfTexelsChanged = changeColor(coordX, coordY, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
+        int textureWidth = darkeningLayer.width;
+        int textureHeight = darkeningLayer.height;
+        numberOfTexelsChanged += changeColor(coordX, coordY, ref pixels, textureWidth, textureHeight);
 
-        numberOfTexelsChanged = changeColor(coordX + 2, coordY, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
-        numberOfTexelsChanged = changeColor(coordX + 1, coordY, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
-        numberOfTexelsChanged = changeColor(coordX - 1, coordY, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
-        numberOfTexelsChanged = changeColor(coordX - 2, coordY, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
+        numberOfTexelsChanged += changeColor(coordX + 2, coordY, ref pixels, textureWidth, textureHeight);
+        numberOfTexelsChanged += changeColor(coordX + 1, coordY, ref pixels, textureWidth, textureHeight);
+        numberOfTexelsChanged += changeColor(coordX - 1, coordY, ref pixels, textureWidth, textureHeight);
+        numberOfTexelsChanged += changeColor(coordX - 2, coordY, ref pixels, textureWidth, textureHeight);
 
-        numberOfTexelsChanged = changeColor(coordX, coordY + 2, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
-        numberOfTexelsChanged = changeColor(coordX, coordY + 1, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
-        numberOfTexelsChanged = changeColor(coordX, coordY - 1, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
-        numberOfTexelsChanged = changeColor(coordX, coordY - 2, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
+        numberOfTexelsChanged += changeColor(coordX, coordY + 2, ref pixels, textureWidth, textureHeight);
+        numberOfTexelsChanged += changeColor(coordX, coordY + 1, ref pixels, textureWidth, textureHeight);
+        numberOfTexelsChanged += changeColor(coordX, coordY - 1, ref pixels, textureWidth, textureHeight);
+        numberOfTexelsChanged += changeColor(coordX, coordY - 2, ref pixels, textureWidth, textureHeight);
 
-        numberOfTexelsChanged = changeColor(coordX + 1, coordY + 1, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
-        numberOfTexelsChanged = changeColor(coordX - 1, coordY + 1, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
-        numberOfTexelsChanged = changeColor(coordX - 1, coordY - 1, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
-        numberOfTexelsChanged = changeColor(coordX + 1, coordY - 1, ref pixels, darkeningLayerWidth, darkeningLayerHeight, numberOfTexelsChanged);
+        numberOfTexelsChanged += changeColor(coordX + 1, coordY + 1, ref pixels, textureWidth, textureHeight);
+        numberOfTexelsChanged += changeColor(coordX - 1, coordY + 1, ref pixels, textureWidth, textureHeight);
+        numberOfTexelsChanged += changeColor(coordX - 1, coordY - 1, ref pixels, textureWidth, textureHeight);
+        numberOfTexelsChanged += changeColor(coordX + 1, coordY - 1, ref pixels, textureWidth, textureHeight);
 
         darkeningLayer.SetPixels(pixels);
         darkeningLayer.Apply();
@@ -96,22 +96,23 @@ public class Lightable : MonoBehaviour
         return numberOfTexelsChanged;
     }
 
-    private static int changeColor(float coordX, float coordY, ref Color[] pixels, int darkeningLayerWidth, int darkeningLayerHeight, int numberOfPixelsChanged)
+    private static int changeColor(float coordX, float coordY, ref Color[] texels, int darkeningLayerWidth, int darkeningLayerHeight)
     {
         Color transparentColor = new Color(1, 1, 1, 0);
-        int index = calculatePixelIndex(darkeningLayerWidth, darkeningLayerHeight, coordX, coordY);
+        int index = calculateTexelIndex(darkeningLayerWidth, darkeningLayerHeight, coordX, coordY);
 
+        int numberOfTexelsChanged = 0;
         //TODO can ben out of index sometimes. Especially when shooting on the exact edges.
-        if (pixels[index] != transparentColor)
+        if (texels[index] != transparentColor)
         {
-            pixels[index] = transparentColor;
-            numberOfPixelsChanged += 1;
+            texels[index] = transparentColor;
+            numberOfTexelsChanged += 1;
         }
 
-        return numberOfPixelsChanged;
+        return numberOfTexelsChanged;
     }
 
-    private static int calculatePixelIndex(int textureWidth, int textureHeight, float coordX, float coordY)
+    private static int calculateTexelIndex(int textureWidth, int textureHeight, float coordX, float coordY)
     {
         int index = textureWidth * (int)coordY + (int)coordX;
         return index;
