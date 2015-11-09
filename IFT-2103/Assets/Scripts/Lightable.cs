@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class Lightable : MonoBehaviour
 {
+    private const string DARKENING_LAYER_TEXTURE_NAME = "_PointsShotInfo";
     private Dictionary<int, Color[]> allMaterialsAndTheirDarkeningLayer = new Dictionary<int, Color[]>();
     private Map map;
     private static Color TRANSPARENT_COLOR = new Color(1, 1, 1, 0);
@@ -13,10 +14,10 @@ public class Lightable : MonoBehaviour
     {
         map = GetComponentInParent<Map>();
 
-        Material[] materialsOfTarget = this.GetComponent<Renderer>().materials;
-        for (int indexCurrentMaterial = 0; indexCurrentMaterial < materialsOfTarget.Length; indexCurrentMaterial++)
+        Material[] materialsOfThisObject = this.GetComponent<Renderer>().materials;
+        for (int indexCurrentMaterial = 0; indexCurrentMaterial < materialsOfThisObject.Length; indexCurrentMaterial++)
         {
-            Material currentMaterial = materialsOfTarget[indexCurrentMaterial];
+            Material currentMaterial = materialsOfThisObject[indexCurrentMaterial];
 
             Texture2D darkeningLayer = initializeDarkeningLayerOn(currentMaterial);
 
@@ -38,7 +39,7 @@ public class Lightable : MonoBehaviour
         darkeningLayer.SetPixels(pixelsOfDarkeningLayer);
         darkeningLayer.Apply();
 
-        currentMaterial.SetTexture("_PointsShotInfo", darkeningLayer);
+        currentMaterial.SetTexture(DARKENING_LAYER_TEXTURE_NAME, darkeningLayer);
         return darkeningLayer;
     }
 
@@ -63,7 +64,7 @@ public class Lightable : MonoBehaviour
         float coordY = hitSpot.textureCoord.y * material.mainTexture.height;
 
         int numberOfTexelsChanged = 0;
-        Texture2D darkeningLayer = (Texture2D)material.GetTexture("_PointsShotInfo");
+        Texture2D darkeningLayer = (Texture2D)material.GetTexture(DARKENING_LAYER_TEXTURE_NAME);
         numberOfTexelsChanged = lightUpACircle(ref pixelsOfDarkeningLayer, coordX, coordY, ref darkeningLayer);
         map.hasLightedSurface(numberOfTexelsChanged);
     }

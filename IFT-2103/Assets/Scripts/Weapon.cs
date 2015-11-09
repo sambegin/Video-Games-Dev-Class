@@ -39,7 +39,6 @@ public class Weapon : MonoBehaviour
             if (asHitOnSomething)
             {
                 Lightable objectShot = hitSpot.transform.GetComponent<Lightable>();
-                //Material material = hitSpot.transform.gameObject.GetComponent<Renderer>().material;
 
                 if(objectShot != null)
                 {
@@ -55,12 +54,10 @@ public class Weapon : MonoBehaviour
             }
             lineRenderer.SetPosition(0, transform.position);
 
-            Debug.DrawRay(ray.origin, ray.direction);
             yield return null;
         }
 
         stopShooting();
-
     }
 
     private void stopShooting()
