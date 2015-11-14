@@ -95,7 +95,7 @@ GameObject:
   - 4: {fileID: 519155566}
   - 114: {fileID: 519155565}
   m_Layer: 0
-  m_Name: LevelOneManager
+  m_Name: LevelOneInitializer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -189,6 +189,46 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1 &856362120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 856362122}
+  - 114: {fileID: 856362121}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &856362121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 856362120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da032fb7fd6ae5542943170cdbe82160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverCanvas: {fileID: 198996, guid: c4040b127fc95a74a96a508bc42d4fc6, type: 2}
+--- !u!4 &856362122
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 856362120}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 162.968018, y: 333.230316, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
 --- !u!1001 &2074331169
 Prefab:
   m_ObjectHideFlags: 0
@@ -230,7 +270,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 160992, guid: 77686655b40433f439c5aa3ee427fb01, type: 2}
       propertyPath: m_Name
-      value: LevelOneManager
+      value: LevelOneInitializer
       objectReference: {fileID: 0}
     - target: {fileID: 11457148, guid: 77686655b40433f439c5aa3ee427fb01, type: 2}
       propertyPath: HUD
