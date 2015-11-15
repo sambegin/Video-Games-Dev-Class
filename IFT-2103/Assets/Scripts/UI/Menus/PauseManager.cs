@@ -7,49 +7,27 @@ public class PauseManager : MonoBehaviour {
 
     public GameObject pausePanel;
     public bool isPaused;
-    
+    LevelManager levelManager;
 
-	// Use this for initialization
-	void Start ()
+    void Start ()
     {
+        levelManager = FindObjectOfType<LevelManager>();
         isPaused = false;
 	}
 	
-	// Update is called once per frame
 	void Update ()
     {
-        PauseGame(isPaused);
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SwitchPauseValue();
+            pauseGame();
         }
     }
 
-    void PauseGame(bool state)
+    private void pauseGame()
     {
-        if (state)
-        {
-            Time.timeScale = 0.0f;
-            enableCursor();
-        }
-        else
-        {
-            Time.timeScale = 1.0f;
-            disableCursor();
-        }
-        pausePanel.SetActive(state);
-    }
-
-    private void disableCursor()
-    {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    private void enableCursor()
-    {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
+        levelManager.pauseGame(isPaused);
+        pausePanel.SetActive(isPaused);
     }
 
     public void SwitchPauseValue ()

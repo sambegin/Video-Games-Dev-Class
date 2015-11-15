@@ -6,7 +6,7 @@ public class CheatCodeManager : MonoBehaviour {
 
     CanvasGroup cheatCodeCanvas;
     InputField inputField;
-    Map map = null;
+    LevelManager levelManager;
 
 	void Start () {
         cheatCodeCanvas = GetComponent<CanvasGroup>();
@@ -14,17 +14,14 @@ public class CheatCodeManager : MonoBehaviour {
         cheatCodeCanvas.alpha = 0;
 
         inputField = GetComponentInChildren<InputField>();
+        levelManager = FindObjectOfType<LevelManager>();
     }
 	
 	public void cheatCodeEntered(string cheatCode)
     {
         if (cheatCode.Equals("Chuck Norris"))
         {
-            if(map == null)
-            {
-                map = FindObjectOfType<Map>();
-            }
-            map.setSurfaceLeftToIlluminate(0);
+            levelManager.playerHasWon();
         }
     }
 

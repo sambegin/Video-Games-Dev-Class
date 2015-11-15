@@ -7,6 +7,7 @@ public class Map : MonoBehaviour {
     private float lightableSurface = 0;
     private float surfaceLeftToLightIlluminate = 0;
     private LevelManager levelManager;
+    bool mapIsEntirelyIlluminated = false;
 
     void Start()
     {
@@ -23,25 +24,16 @@ public class Map : MonoBehaviour {
     public void hasLightedSurface(int numberOfTexelsLighted)
     {
         surfaceLeftToLightIlluminate -= numberOfTexelsLighted;
+        if(surfaceLeftToLightIlluminate < 0 && mapIsEntirelyIlluminated == false)
+        {
+            mapIsEntirelyIlluminated = true;
+            levelManager.playerHasWon();
+        }
     }
 
     public float getPercentageLighted()
     {
         float percentageLeftToLight = (surfaceLeftToLightIlluminate / lightableSurface) * 100;
         return 100 - percentageLeftToLight;
-    }
-
-    void Update()
-    {
-        if (surfaceLeftToLightIlluminate == 0 && lightableSurface !=0)
-        {
-            levelManager.playerHasWon();
-        }
-    }
-
-    //Use for cheat code.
-    internal void setSurfaceLeftToIlluminate(int newValue)
-    {
-        surfaceLeftToLightIlluminate = newValue;
     }
 }
