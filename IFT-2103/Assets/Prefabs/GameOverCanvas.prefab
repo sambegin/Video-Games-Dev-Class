@@ -151,7 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 345ad672fb2383e4990a22c3e06c8b4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseCanvas: {fileID: 0}
 --- !u!114 &11439714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -204,7 +203,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0, g: 1, b: .213793278, a: 1}
+    m_HighlightedColor: {r: .522058845, g: .522058845, b: .522058845, a: 1}
     m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
     m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
     m_ColorMultiplier: 1
@@ -378,15 +377,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: m_Colors.m_HighlightedColor.r
-      value: 0
+      value: .522058845
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Colors.m_HighlightedColor.g
-      value: 1
+      value: .522058845
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Colors.m_HighlightedColor.b
-      value: .213793278
+      value: .522058845
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
