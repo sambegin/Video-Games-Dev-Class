@@ -69,33 +69,41 @@ public class Lightable : MonoBehaviour
         map.hasLightedSurface(numberOfTexelsChanged);
     }
 
-    private static int lightUpACircle(ref Color[] pixels, float coordX, float coordY, ref Texture2D darkeningLayer)
+    private static int lightUpACircle(ref Color[] pixels, float centerX, float centerY, ref Texture2D darkeningLayer)
     {
         int numberOfTexelsChanged = 0;
+        float radius = 400.0f;
+        float positionX = -400.0f;
+        float startPositionY = -400.0f;
+        float positionY;
 
         int textureWidth = darkeningLayer.width;
         int textureHeight = darkeningLayer.height;
-        numberOfTexelsChanged += changeColor(coordX, coordY, ref pixels, textureWidth, textureHeight);
 
-        numberOfTexelsChanged += changeColor(coordX + 2, coordY, ref pixels, textureWidth, textureHeight);
-        numberOfTexelsChanged += changeColor(coordX + 1, coordY, ref pixels, textureWidth, textureHeight);
-        numberOfTexelsChanged += changeColor(coordX - 1, coordY, ref pixels, textureWidth, textureHeight);
-        numberOfTexelsChanged += changeColor(coordX - 2, coordY, ref pixels, textureWidth, textureHeight);
+        while (positionX <= radius)
+        {
+            positionY = startPositionY;
+            while (positionY <= radius)
+            {
 
-        numberOfTexelsChanged += changeColor(coordX, coordY + 2, ref pixels, textureWidth, textureHeight);
-        numberOfTexelsChanged += changeColor(coordX, coordY + 1, ref pixels, textureWidth, textureHeight);
-        numberOfTexelsChanged += changeColor(coordX, coordY - 1, ref pixels, textureWidth, textureHeight);
-        numberOfTexelsChanged += changeColor(coordX, coordY - 2, ref pixels, textureWidth, textureHeight);
+                if (isInTheCircle(centerX, centerY, centerX + positionX, centerY + positionY, radius))
+                {
+                    numberOfTexelsChanged += changeColor(centerX + positionX, centerY + positionY, ref pixels, textureWidth, textureHeight);
+                }
+                positionY += 1;
 
-        numberOfTexelsChanged += changeColor(coordX + 1, coordY + 1, ref pixels, textureWidth, textureHeight);
-        numberOfTexelsChanged += changeColor(coordX - 1, coordY + 1, ref pixels, textureWidth, textureHeight);
-        numberOfTexelsChanged += changeColor(coordX - 1, coordY - 1, ref pixels, textureWidth, textureHeight);
-        numberOfTexelsChanged += changeColor(coordX + 1, coordY - 1, ref pixels, textureWidth, textureHeight);
+            }
+            positionX += 1;
 
+        }
         darkeningLayer.SetPixels(pixels);
         darkeningLayer.Apply();
-
         return numberOfTexelsChanged;
+    }
+
+    private static bool isInTheCircle(float center_x, float center_y, float coordX, float coordY, float radius)
+    {
+        return ((((coordX - center_x) * (coordX - center_x)) + ((coordY - center_y) * (coordY - center_y))) <= radius);
     }
 
     private static int changeColor(float coordX, float coordY, ref Color[] texels, int darkeningLayerWidth, int darkeningLayerHeight)
@@ -106,9 +114,10 @@ public class Lightable : MonoBehaviour
         }
 
         int index = calculateTexelIndex(darkeningLayerWidth, darkeningLayerHeight, coordX, coordY);
-
+        
         int numberOfTexelsChanged = 0;
-        if (texels[index] != TRANSPARENT_COLOR)
+        
+        if (0 <= index && index < texels.Length && texels[index] != TRANSPARENT_COLOR)
         {
             texels[index] = TRANSPARENT_COLOR;
             numberOfTexelsChanged += 1;
