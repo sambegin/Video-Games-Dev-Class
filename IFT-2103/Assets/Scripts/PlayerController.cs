@@ -21,9 +21,11 @@ public class PlayerController : MonoBehaviour
     {
         Camera playerCamera = GetComponentInChildren<Camera>();
         Vector3 cameraPosition = playerCamera.transform.position;
+        var realCameraPosition = cameraPosition;
+        realCameraPosition.x -= 2;
 
-        transform.LookAt(cameraPosition);
-        Vector3 forwardDirection = transform.position - cameraPosition;
+        transform.LookAt(realCameraPosition);
+        Vector3 forwardDirection = transform.position - realCameraPosition;
         transform.rotation = Quaternion.LookRotation(forwardDirection);
     }
 

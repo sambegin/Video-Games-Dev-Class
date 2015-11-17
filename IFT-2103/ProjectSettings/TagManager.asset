@@ -13,6 +13,8 @@ TagManager:
   - StageOne
   - StageTwo
   - StageThree
+  - Enemy
+  - Target
   layers:
   - Default
   - TransparentFX
