@@ -8,7 +8,15 @@ public class LevelManager : MonoBehaviour {
 
     internal void playerHasWon()
     {
+
         Instantiate(gameOverCanvas);
+    }
+
+    public void playerIsDead()
+    {
+        GameObject gameOverCanvasInitialized = Instantiate(gameOverCanvas);
+        GameOverCanvas canvas = gameOverCanvasInitialized.GetComponent<GameOverCanvas>();
+        canvas.isGameOver(true);
     }
 
     public void pauseGame(bool state)

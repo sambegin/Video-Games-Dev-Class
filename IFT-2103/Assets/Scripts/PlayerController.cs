@@ -5,16 +5,31 @@ using System;
 public class PlayerController : MonoBehaviour
 {
 
+    private LevelManager levelManager;
     private float speed = 20.0f;
     private float jumpHeight = 20.0f;
     private Vector3 moveDirection = Vector3.zero;
     private float gravity = 50.0f;
     private float inAirDrift = 60.0f;
 
+    void Start()
+    {
+        levelManager = FindObjectOfType<LevelManager>();
+    }
+
     void FixedUpdate()
     {
         handleDirection();
         handleJump();
+        handleDead();
+    }
+
+    private void handleDead()
+    {
+        if(transform.position.y < 0)
+        {
+            levelManager.playerIsDead();
+        }
     }
 
     private void handleDirection()

@@ -28,6 +28,7 @@ GameObject:
   - 224: {fileID: 22472298}
   - 222: {fileID: 22267426}
   - 114: {fileID: 11410990}
+  - 114: {fileID: 11407472}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -110,6 +111,17 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &11407472
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 120360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 398b3faa7baada44ba3062fcea6848e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11410990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -169,6 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 345ad672fb2383e4990a22c3e06c8b4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelFinishedText: {fileID: 11410990}
 --- !u!114 &11439714
 MonoBehaviour:
   m_ObjectHideFlags: 1
