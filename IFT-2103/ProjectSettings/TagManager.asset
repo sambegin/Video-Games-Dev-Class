@@ -15,6 +15,7 @@ TagManager:
   - StageThree
   - Enemy
   - Target
+  - Weapon
   layers:
   - Default
   - TransparentFX

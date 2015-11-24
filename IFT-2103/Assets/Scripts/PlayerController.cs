@@ -10,6 +10,13 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private float gravity = 50.0f;
     private float inAirDrift = 60.0f;
+    public Transform target;
+    private Camera mainCamera;
+
+    void Start()
+    {
+        this.mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+    }
 
     void FixedUpdate()
     {
@@ -19,14 +26,23 @@ public class PlayerController : MonoBehaviour
 
     private void handleDirection()
     {
-        Camera playerCamera = GetComponentInChildren<Camera>();
-        Vector3 cameraPosition = playerCamera.transform.position;
-        var realCameraPosition = cameraPosition;
-        realCameraPosition.x -= 2;
+        transform.LookAt(-mainCamera.transform.position);
+        
 
-        transform.LookAt(realCameraPosition);
-        Vector3 forwardDirection = transform.position - realCameraPosition;
-        transform.rotation = Quaternion.LookRotation(forwardDirection);
+        //var targetPosition = target.position;
+        ////targetPosition.y = transform.position.y;
+
+        //var targetDirection = Quaternion.LookRotation(-(targetPosition - transform.position));
+        //transform.rotation = Quaternion.Slerp(transform.rotation, targetDirection, 100 * Time.deltaTime);
+
+        //Camera playerCamera = GetComponentInChildren<Camera>();
+        //Vector3 cameraPosition = playerCamera.transform.position;
+        //var realCameraPosition = cameraPosition;
+        //realCameraPosition.x -= 2;
+
+        //transform.LookAt(realCameraPosition);
+        //Vector3 forwardDirection = transform.position - realCameraPosition;
+        //transform.rotation = Quaternion.LookRotation(forwardDirection);
     }
 
     private void handleJump()
