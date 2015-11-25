@@ -5,6 +5,12 @@ using System;
 public class LevelManager : MonoBehaviour {
 
     public GameObject gameOverCanvas;
+    public MouseOrbit cameraMovment;
+
+    void Start ()
+    {
+        cameraMovment = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MouseOrbit>();
+    }
 
     internal void playerHasWon()
     {
@@ -23,6 +29,8 @@ public class LevelManager : MonoBehaviour {
             Time.timeScale = 1.0f;
             disableCursor();
         }     
+        cameraMovment.enabled = !state;
+
     }
 
     private void disableCursor()
