@@ -13,7 +13,7 @@ public class Map : MonoBehaviour {
     void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
-        Light sun = FindObjectOfType<Light>();
+        GameObject sun = GameObject.Find("Directional Light");
         globalLightning = sun.GetComponent<GlobalLightning>();
     }
 
