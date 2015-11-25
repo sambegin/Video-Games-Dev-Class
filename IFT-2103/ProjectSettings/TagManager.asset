@@ -14,8 +14,9 @@ TagManager:
   - StageTwo
   - StageThree
   - Enemy
-  - Target
+  - CameraTarget
   - Weapon
+  - HitTarget
   layers:
   - Default
   - TransparentFX
