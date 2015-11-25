@@ -24,7 +24,7 @@ public class Map : MonoBehaviour {
     public void hasLightedSurface(int numberOfTexelsLighted)
     {
         surfaceLeftToLightIlluminate -= numberOfTexelsLighted;
-        if(surfaceLeftToLightIlluminate < 0 && mapIsEntirelyIlluminated == false)
+        if(surfaceLeftToLightIlluminate <= 0 && mapIsEntirelyIlluminated == false)
         {
             mapIsEntirelyIlluminated = true;
             levelManager.playerHasWon();

@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
-public class GameOverCanvas : MonoBehaviour {
+public class GameOverCanvas : MonoBehaviour
+{
 
     private Button buttonToReturnToMenu;
 
@@ -12,7 +14,9 @@ public class GameOverCanvas : MonoBehaviour {
         levelManager.pauseGame(true);
     }
 
-public void goToMainMenu()
+
+
+    public void goToMainMenu()
     {
         Application.LoadLevel(0);
     }
