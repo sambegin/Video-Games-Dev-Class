@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Threading;
 using System;
 using System.Collections.Generic;
 
@@ -9,6 +9,7 @@ public class Lightable : MonoBehaviour
     private Dictionary<int, Color[]> allMaterialsAndTheirDarkeningLayer = new Dictionary<int, Color[]>();
     private Map map;
     private static Color TRANSPARENT_COLOR = new Color(1, 1, 1, 0);
+    private static int textureSize = 20;
 
     void Start()
     {
@@ -19,7 +20,7 @@ public class Lightable : MonoBehaviour
         {
             Material currentMaterial = materialsOfThisObject[indexCurrentMaterial];
 
-            Texture2D darkeningLayer = initializeDarkeningLayerOn(currentMaterial);
+            Texture2D darkeningLayer = initializeDarkeningLayerOn(currentMaterial, gameObject);
 
             allMaterialsAndTheirDarkeningLayer.Add(currentMaterial.GetInstanceID(), darkeningLayer.GetPixels());
 
@@ -27,11 +28,17 @@ public class Lightable : MonoBehaviour
         }
     }
 
-    private static Texture2D initializeDarkeningLayerOn(Material currentMaterial)
+    private static Texture2D initializeDarkeningLayerOn(Material currentMaterial , GameObject gameObject)
     {
-        Texture2D darkeningLayer = new Texture2D(currentMaterial.mainTexture.width, currentMaterial.mainTexture.height);
+        int[] scale =  setScale(gameObject);
+
+        int width = scale[0];
+        int height = scale[1];
+
+        Texture2D darkeningLayer = new Texture2D(textureSize, textureSize);
         Color[] pixelsOfDarkeningLayer = darkeningLayer.GetPixels();
         Color darkColor = new Color(0, 0, 0, 1);
+
         for (int indexCurrentPixel = 0; indexCurrentPixel < pixelsOfDarkeningLayer.Length; indexCurrentPixel++)
         {
             pixelsOfDarkeningLayer[indexCurrentPixel] = darkColor;
@@ -41,6 +48,31 @@ public class Lightable : MonoBehaviour
 
         currentMaterial.SetTexture(DARKENING_LAYER_TEXTURE_NAME, darkeningLayer);
         return darkeningLayer;
+    }
+
+    private static int[] setScale(GameObject gameObject)
+    {
+        int[] scale = new int[2];
+
+        scale[0] = (int)gameObject.transform.localScale.x;
+        scale[1] = (int)gameObject.transform.localScale.z;
+
+        if (gameObject.transform.localScale.x < 1)
+        {
+            scale[0] = (int)gameObject.transform.localScale.z;
+            scale[1] = (int)gameObject.transform.localScale.y;
+
+        }
+        else
+        {
+            if (gameObject.transform.localScale.x < 5)
+            {
+                scale[0] = (int)gameObject.transform.localScale.x * 10;
+                scale[1] = (int)gameObject.transform.localScale.z * 10;
+            }
+
+        }
+        return scale;
     }
 
     internal void lightUp(RaycastHit hitSpot)
@@ -57,28 +89,26 @@ public class Lightable : MonoBehaviour
             material = defaultMaterial;
         }
 
-        Color[] pixelsOfDarkeningLayer;
-        allMaterialsAndTheirDarkeningLayer.TryGetValue(material.GetInstanceID(), out pixelsOfDarkeningLayer);
+        int[] scale = setScale(gameObject);
 
-        float coordX = hitSpot.textureCoord.x * material.mainTexture.width;
-        float coordY = hitSpot.textureCoord.y * material.mainTexture.height;
+        float coordX = hitSpot.textureCoord.x * textureSize;//scale[0];
+        float coordY = hitSpot.textureCoord.y * textureSize;//scale[1];
 
         int numberOfTexelsChanged = 0;
         Texture2D darkeningLayer = (Texture2D)material.GetTexture(DARKENING_LAYER_TEXTURE_NAME);
-        numberOfTexelsChanged = lightUpACircle(ref pixelsOfDarkeningLayer, coordX, coordY, ref darkeningLayer);
+        numberOfTexelsChanged = lightUpACircle(coordX, coordY, darkeningLayer);
         map.hasLightedSurface(numberOfTexelsChanged);
     }
 
-    private static int lightUpACircle(ref Color[] pixels, float centerX, float centerY, ref Texture2D darkeningLayer)
+    private static int lightUpACircle( float centerX, float centerY, Texture2D darkeningLayer)
     {
         int numberOfTexelsChanged = 0;
-        float radius = 400.0f;
-        float positionX = -400.0f;
-        float startPositionY = -400.0f;
-        float positionY;
 
-        int textureWidth = darkeningLayer.width;
-        int textureHeight = darkeningLayer.height;
+
+        float radius = 5.0f;
+        float positionX = -5.0f;
+        float startPositionY = -5.0f;
+        float positionY;
 
         while (positionX <= radius)
         {
@@ -88,7 +118,11 @@ public class Lightable : MonoBehaviour
 
                 if (isInTheCircle(centerX, centerY, centerX + positionX, centerY + positionY, radius))
                 {
-                    numberOfTexelsChanged += changeColor(centerX + positionX, centerY + positionY, ref pixels, textureWidth, textureHeight);
+                    if (darkeningLayer.GetPixel((int)(centerX + positionX), (int)(centerY + positionY)) != TRANSPARENT_COLOR)
+                    {
+                        darkeningLayer.SetPixel((int)(centerX + positionX), (int)(centerY + positionY), TRANSPARENT_COLOR);
+                        numberOfTexelsChanged += 1;
+                    }
                 }
                 positionY += 1;
 
@@ -96,40 +130,14 @@ public class Lightable : MonoBehaviour
             positionX += 1;
 
         }
-        darkeningLayer.SetPixels(pixels);
         darkeningLayer.Apply();
         return numberOfTexelsChanged;
     }
 
+
     private static bool isInTheCircle(float center_x, float center_y, float coordX, float coordY, float radius)
     {
         return ((((coordX - center_x) * (coordX - center_x)) + ((coordY - center_y) * (coordY - center_y))) <= radius);
-    }
-
-    private static int changeColor(float coordX, float coordY, ref Color[] texels, int darkeningLayerWidth, int darkeningLayerHeight)
-    {
-        if (coordX < 0 || coordY < 0)
-        {
-            return 0;
-        }
-
-        int index = calculateTexelIndex(darkeningLayerWidth, darkeningLayerHeight, coordX, coordY);
-        
-        int numberOfTexelsChanged = 0;
-        
-        if (0 <= index && index < texels.Length && texels[index] != TRANSPARENT_COLOR)
-        {
-            texels[index] = TRANSPARENT_COLOR;
-            numberOfTexelsChanged += 1;
-        }
-
-        return numberOfTexelsChanged;
-    }
-
-    private static int calculateTexelIndex(int textureWidth, int textureHeight, float coordX, float coordY)
-    {
-        int index = textureWidth * (int)coordY + (int)coordX;
-        return index;
     }
 
     private Material findMaterialThatIsShot(RaycastHit hitSpot)
