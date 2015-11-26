@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     private float jumpHeight = 20.0f;
     private Vector3 moveDirection = Vector3.zero;
     private float gravity = 50.0f;
-    private float inAirDrift = 10.0f;
 
     private bool flashlightIsOn;
     private Light flashlight;
@@ -37,8 +36,12 @@ public class PlayerController : MonoBehaviour
     {
         handleCharacterBodyControl();
         handleCharacterWeaponControl();
-        handleCharacterJump();
         handleFlashlight();
+    }
+
+    void FixedUpdate()
+    {
+        handleCharacterJump();
     }
 
     private void handleFlashlight()
@@ -71,21 +74,31 @@ public class PlayerController : MonoBehaviour
     private void handleCharacterJump()
     {
         CharacterController controller = GetComponent<CharacterController>();
+
         if (controller.isGrounded)
         {
-            moveDirection = transform.forward * speed * Input.GetAxis("Vertical") + transform.right * speed * Input.GetAxis("Horizontal");
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            moveDirection = transform.TransformDirection(moveDirection);
+            moveDirection *= speed;
+
             if (Input.GetButton("Jump"))
             {
                 moveDirection.y = jumpHeight;
             }
+
+
         }
         else
         {
-            moveDirection += transform.TransformDirection(new Vector3(Input.GetAxis("Horizontal") * Time.deltaTime * inAirDrift, 0, Input.GetAxis("Vertical") * Time.deltaTime * inAirDrift));
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), moveDirection.y, Input.GetAxis("Vertical"));
+            moveDirection = transform.TransformDirection(moveDirection);
+            moveDirection.x *= speed;
+            moveDirection.z *= speed;
         }
 
         moveDirection.y -= gravity * Time.deltaTime;
         controller.Move(moveDirection * Time.deltaTime);
     }
+
 }
 
