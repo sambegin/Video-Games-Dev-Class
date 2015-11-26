@@ -9,7 +9,7 @@ public class Lightable : MonoBehaviour
     private Dictionary<int, Color[]> allMaterialsAndTheirDarkeningLayer = new Dictionary<int, Color[]>();
     private Map map;
     private static Color TRANSPARENT_COLOR = new Color(1, 1, 1, 0);
-    private static int textureSize = 20;
+    private static int textureSizeAmplifier = 15;
 
     void Start()
     {
@@ -20,7 +20,7 @@ public class Lightable : MonoBehaviour
         {
             Material currentMaterial = materialsOfThisObject[indexCurrentMaterial];
 
-            Texture2D darkeningLayer = initializeDarkeningLayerOn(currentMaterial, gameObject);
+            Texture2D darkeningLayer = initializeDarkeningLayerOn(currentMaterial, GetComponent<Renderer>());
 
             allMaterialsAndTheirDarkeningLayer.Add(currentMaterial.GetInstanceID(), darkeningLayer.GetPixels());
 
@@ -28,14 +28,15 @@ public class Lightable : MonoBehaviour
         }
     }
 
-    private static Texture2D initializeDarkeningLayerOn(Material currentMaterial , GameObject gameObject)
+    private static Texture2D initializeDarkeningLayerOn(Material currentMaterial , Renderer renderer)
     {
-        int[] scale =  setScale(gameObject);
+        int[] scale =  setScale(renderer);
 
         int width = scale[0];
         int height = scale[1];
 
-        Texture2D darkeningLayer = new Texture2D(textureSize, textureSize);
+        Texture2D darkeningLayer = new Texture2D(width, height);
+        darkeningLayer.wrapMode = TextureWrapMode.Clamp;
         Color[] pixelsOfDarkeningLayer = darkeningLayer.GetPixels();
         Color darkColor = new Color(0, 0, 0, 1);
 
@@ -50,28 +51,20 @@ public class Lightable : MonoBehaviour
         return darkeningLayer;
     }
 
-    private static int[] setScale(GameObject gameObject)
+    private static int[] setScale(Renderer renderer)
     {
         int[] scale = new int[2];
 
-        scale[0] = (int)gameObject.transform.localScale.x;
-        scale[1] = (int)gameObject.transform.localScale.z;
+        scale[0] = (int)renderer.bounds.size.x * textureSizeAmplifier;
+        scale[1] = (int)renderer.bounds.size.z * textureSizeAmplifier;
 
-        if (gameObject.transform.localScale.x < 1)
+        if (renderer.bounds.size.x < 1)
         {
-            scale[0] = (int)gameObject.transform.localScale.z;
-            scale[1] = (int)gameObject.transform.localScale.y;
+            scale[0] = (int)renderer.bounds.size.z * textureSizeAmplifier;
+            scale[1] = (int)renderer.bounds.size.y * textureSizeAmplifier;
 
         }
-        else
-        {
-            if (gameObject.transform.localScale.x < 5)
-            {
-                scale[0] = (int)gameObject.transform.localScale.x * 10;
-                scale[1] = (int)gameObject.transform.localScale.z * 10;
-            }
-
-        }
+        
         return scale;
     }
 
@@ -89,11 +82,10 @@ public class Lightable : MonoBehaviour
             material = defaultMaterial;
         }
 
-        int[] scale = setScale(gameObject);
+        int[] scale = setScale(GetComponent<Renderer>());
 
-        float coordX = hitSpot.textureCoord.x * textureSize;//scale[0];
-        float coordY = hitSpot.textureCoord.y * textureSize;//scale[1];
-
+        float coordX = hitSpot.textureCoord.x * scale[0];
+        float coordY = hitSpot.textureCoord.y * scale[1];
         int numberOfTexelsChanged = 0;
         Texture2D darkeningLayer = (Texture2D)material.GetTexture(DARKENING_LAYER_TEXTURE_NAME);
         numberOfTexelsChanged = lightUpACircle(coordX, coordY, darkeningLayer);
@@ -104,19 +96,16 @@ public class Lightable : MonoBehaviour
     {
         int numberOfTexelsChanged = 0;
 
-
-        float radius = 5.0f;
-        float positionX = -5.0f;
-        float startPositionY = -5.0f;
+        float radius = 1000.0f;
+        float positionX = -radius;
+        float startPositionY = -radius;
         float positionY;
-
         while (positionX <= radius)
         {
             positionY = startPositionY;
             while (positionY <= radius)
             {
-
-                if (isInTheCircle(centerX, centerY, centerX + positionX, centerY + positionY, radius))
+                if ((isInTheCircle(centerX, centerY, centerX + positionX, centerY + positionY, radius)))
                 {
                     if (darkeningLayer.GetPixel((int)(centerX + positionX), (int)(centerY + positionY)) != TRANSPARENT_COLOR)
                     {
