@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: .211999997, g: .226999998, b: .259000003, a: 1}
   m_AmbientEquatorColor: {r: .114, g: .125, b: .133000001, a: 1}
   m_AmbientGroundColor: {r: .0469999984, g: .0430000015, b: .0350000001, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 0
   m_AmbientMode: 0
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: .5
@@ -42,7 +42,7 @@ LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
   m_GIWorkflowMode: 0
-  m_LightmapsMode: 1
+  m_LightmapsMode: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -196,9 +196,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapPrefab: {fileID: 168760, guid: 952ddb1a10124194dbae58f7a2adbe2a, type: 2}
-  playerPrefab: {fileID: 183598, guid: a5f8a8a79841de843bb4239ee07d3b99, type: 2}
+  playerPrefab: {fileID: 133514, guid: a5f8a8a79841de843bb4239ee07d3b99, type: 2}
   pauseMenu: {fileID: 122714, guid: 9800de70ad7bf4848a6011ddd45107e0, type: 2}
   HUD: {fileID: 130178, guid: c8dee0e1a46cbcc4790eb8259b2381be, type: 2}
+  mainCameraPrefab: {fileID: 2018104, guid: 8719c2486d94ef04c95f8d4348ade435, type: 2}
 --- !u!4 &519155566
 Transform:
   m_ObjectHideFlags: 0
@@ -220,6 +221,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 829827946}
   - 108: {fileID: 829827945}
+  - 114: {fileID: 829827947}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -236,7 +238,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 6
   m_Type: 1
-  m_Color: {r: .760784388, g: .760784388, b: .760784388, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -255,7 +257,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_Lightmapping: 4
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
@@ -271,6 +273,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &829827947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 829827944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8907ef863f886604999ccb4520634569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &856362120
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,6 +312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverCanvas: {fileID: 198996, guid: c4040b127fc95a74a96a508bc42d4fc6, type: 2}
+  cameraMovment: {fileID: 0}
 --- !u!4 &856362122
 Transform:
   m_ObjectHideFlags: 0
@@ -358,6 +372,14 @@ Prefab:
       propertyPath: HUD
       value: 
       objectReference: {fileID: 130178, guid: c8dee0e1a46cbcc4790eb8259b2381be, type: 2}
+    - target: {fileID: 11457148, guid: 77686655b40433f439c5aa3ee427fb01, type: 2}
+      propertyPath: mainCameraPrefab
+      value: 
+      objectReference: {fileID: 2018104, guid: 8719c2486d94ef04c95f8d4348ade435, type: 2}
+    - target: {fileID: 11457148, guid: 77686655b40433f439c5aa3ee427fb01, type: 2}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 133514, guid: a5f8a8a79841de843bb4239ee07d3b99, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77686655b40433f439c5aa3ee427fb01, type: 2}
   m_IsPrefabParent: 0

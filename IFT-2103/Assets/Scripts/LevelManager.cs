@@ -5,10 +5,24 @@ using System;
 public class LevelManager : MonoBehaviour {
 
     public GameObject gameOverCanvas;
+    public MouseOrbit cameraMovment;
+
+    void Start ()
+    {
+        cameraMovment = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MouseOrbit>();
+    }
 
     internal void playerHasWon()
     {
+
         Instantiate(gameOverCanvas);
+    }
+
+    public void playerIsDead()
+    {
+        GameObject gameOverCanvasInitialized = Instantiate(gameOverCanvas);
+        GameOverCanvas canvas = gameOverCanvasInitialized.GetComponent<GameOverCanvas>();
+        canvas.isGameOver(true);
     }
 
     public void pauseGame(bool state)
@@ -23,6 +37,8 @@ public class LevelManager : MonoBehaviour {
             Time.timeScale = 1.0f;
             disableCursor();
         }     
+        cameraMovment.enabled = !state;
+
     }
 
     private void disableCursor()

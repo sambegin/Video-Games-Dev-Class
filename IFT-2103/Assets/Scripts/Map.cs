@@ -7,11 +7,14 @@ public class Map : MonoBehaviour {
     private float lightableSurface = 0;
     private float surfaceLeftToLightIlluminate = 0;
     private LevelManager levelManager;
+    private GlobalLightning globalLightning;
     bool mapIsEntirelyIlluminated = false;
 
     void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
+        GameObject sun = GameObject.Find("Directional Light");
+        globalLightning = sun.GetComponent<GlobalLightning>();
     }
 
     public void addLightableSurface(Texture2D lightableTexture)
@@ -24,7 +27,8 @@ public class Map : MonoBehaviour {
     public void hasLightedSurface(int numberOfTexelsLighted)
     {
         surfaceLeftToLightIlluminate -= numberOfTexelsLighted;
-        if(surfaceLeftToLightIlluminate < 0 && mapIsEntirelyIlluminated == false)
+        globalLightning.handleGlobalLightning(getPercentageLighted());
+        if(surfaceLeftToLightIlluminate <= 0 && mapIsEntirelyIlluminated == false)
         {
             mapIsEntirelyIlluminated = true;
             levelManager.playerHasWon();
