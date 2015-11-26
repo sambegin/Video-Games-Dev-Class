@@ -10,12 +10,14 @@ public class LevelInitializer : MonoBehaviour {
     public GameObject playerPrefab;
     public GameObject pauseMenu;
     public GameObject HUD;
+    public Camera mainCameraPrefab;
 
 	void Start () {
         loadMap();
         loadHud();
         loadPlayer();
         loadPauseMenu();
+        loadMainCamera();
         setupCursor();
     }
 
@@ -39,6 +41,11 @@ public class LevelInitializer : MonoBehaviour {
     private void loadPauseMenu()
     {
         Instantiate(pauseMenu);
+    }
+
+    private void loadMainCamera()
+    {
+        Instantiate(mainCameraPrefab);
     }
 
     private void setupCursor()
