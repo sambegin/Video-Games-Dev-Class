@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour
     private float gravity = 50.0f;
     private float inAirDrift = 10.0f;
 
+    private bool flashlightIsOn;
+    private Light flashlight;
+    private float initialFlashlightIntensity;
+
     public float rotSpeed;
 
 
@@ -24,6 +28,9 @@ public class PlayerController : MonoBehaviour
         this.mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         this.weapon = GameObject.FindGameObjectWithTag("Weapon").GetComponent<Transform>();
         this.hitTarget = GameObject.FindGameObjectWithTag("HitTarget").GetComponent<Transform>();
+        this.flashlight = GetComponentInChildren<Light>();
+        initialFlashlightIntensity = flashlight.intensity;
+        flashlight.intensity = 0;
     }
 
     void Update()
@@ -31,6 +38,21 @@ public class PlayerController : MonoBehaviour
         handleCharacterBodyControl();
         handleCharacterWeaponControl();
         handleCharacterJump();
+        handleFlashlight();
+    }
+
+    private void handleFlashlight()
+    {
+        if (Input.GetKeyDown(KeyCode.Q) && flashlightIsOn)
+        {
+            flashlight.intensity = 0;
+            flashlightIsOn = false;
+        }
+        else if(Input.GetKeyDown(KeyCode.Q) && !flashlightIsOn)
+        {
+            flashlight.intensity = initialFlashlightIntensity;
+            flashlightIsOn = true;
+        }
     }
 
     private void handleCharacterBodyControl()
