@@ -27,7 +27,7 @@ public class Map : MonoBehaviour {
     public void hasLightedSurface(int numberOfTexelsLighted)
     {
         surfaceLeftToIlluminate -= numberOfTexelsLighted;
-        globalLightning.handleGlobalLightning(getPercentageLighted());
+        globalLightning.handleGlobalLightning((float)getPercentageLighted());
         int nearWinning = 10;
         if(surfaceLeftToIlluminate <= nearWinning)
         {
@@ -39,9 +39,9 @@ public class Map : MonoBehaviour {
         }
     }
 
-    public float getPercentageLighted()
+    public decimal getPercentageLighted()
     {
         float percentageLeftToLight = (surfaceLeftToIlluminate / lightableSurface) * 100;
-        return 100 - percentageLeftToLight;
+        return 100 - Math.Round((decimal)percentageLeftToLight,2);
     }
 }
