@@ -42,6 +42,11 @@ public class Map : MonoBehaviour {
     public decimal getPercentageLighted()
     {
         float percentageLeftToLight = (surfaceLeftToIlluminate / lightableSurface) * 100;
-        return 100 - Math.Round((decimal)percentageLeftToLight,2);
+        decimal percentageLighted = 100 - Math.Round((decimal)percentageLeftToLight, 2);
+        if ((float)percentageLighted >= 99.95f)
+        {
+            percentageLighted = 100;
+        }
+        return percentageLighted;
     }
 }
