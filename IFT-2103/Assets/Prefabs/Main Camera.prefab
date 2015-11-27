@@ -182,8 +182,8 @@ MonoBehaviour:
   distance: 10
   xSpeed: 250
   ySpeed: 120
-  yMinLimit: -20
-  yMaxLimit: 60
+  yMinLimit: -10
+  yMaxLimit: 50
 --- !u!124 &12485090
 Behaviour:
   m_ObjectHideFlags: 1
@@ -197,7 +197,15 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: yMinLimit
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: yMaxLimit
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 120100}

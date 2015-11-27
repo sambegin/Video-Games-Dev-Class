@@ -5,11 +5,11 @@ using System;
 public class LevelManager : MonoBehaviour {
 
     public GameObject gameOverCanvas;
-    public MouseOrbit cameraMovment;
+    public MouseOrbitWithZoomCamera cameraMovment;
 
     void Start ()
     {
-        cameraMovment = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MouseOrbit>();
+        cameraMovment = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MouseOrbitWithZoomCamera>();
     }
 
     internal void playerHasWon()
