@@ -6,6 +6,7 @@ public class MouseOrbit : MonoBehaviour {
 
     private Transform cameraTarget;
     public float distance = 10;
+    private float originalDistance;
     public float xSpeed = 250;
     public float ySpeed = 120;
     public float yMinLimit = -20;
@@ -14,19 +15,26 @@ public class MouseOrbit : MonoBehaviour {
     private float x = 0;
     private float y = 0;
 
+    private CameraObstructionWatcher cameraObstructionWatcher;
 
-	// Use this for initialization
 	void Start () {
         var angles = transform.eulerAngles;
         x = angles.y;
         y = angles.x;
         cameraTarget = GameObject.FindGameObjectWithTag("CameraTarget").GetComponent<Transform>();
+        cameraObstructionWatcher = new CameraObstructionWatcher();
+        originalDistance = distance; 
     }
 	
-	// Update is called once per frame
 	void LateUpdate () {
         if (cameraTarget)
         {
+            //float collidingDistance = cameraObstructionWatcher.collidingDistance(transform.position, cameraTarget.position);
+            //if(collidingDistance < originalDistance)
+            //{
+            //    distance = collidingDistance;
+            //}
+
             x += Input.GetAxis("Mouse X") * xSpeed * 0.02f;
             y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
 
