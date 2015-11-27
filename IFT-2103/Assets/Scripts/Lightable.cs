@@ -9,7 +9,7 @@ public class Lightable : MonoBehaviour
     private Dictionary<int, Color[]> allMaterialsAndTheirDarkeningLayer = new Dictionary<int, Color[]>();
     private Map map;
     private static Color TRANSPARENT_COLOR = new Color(1, 1, 1, 0);
-    private static int textureSizeAmplifier = 15;
+    private static int textureSizeAmplifier = 10;
 
     void Start()
     {
@@ -96,7 +96,7 @@ public class Lightable : MonoBehaviour
     {
         int numberOfTexelsChanged = 0;
 
-        float radius = 1000.0f;
+        float radius = 500.0f;
         float positionX = -radius;
         float startPositionY = -radius;
         float positionY;
