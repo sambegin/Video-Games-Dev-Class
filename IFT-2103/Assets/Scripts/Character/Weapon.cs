@@ -27,7 +27,9 @@ public class Weapon : MonoBehaviour
 
     IEnumerator shoot()
     {
+        AudioSource audio = GetComponentInParent<AudioSource>();
         lineRenderer.enabled = true;
+        audio.Play();
         while (Input.GetButton("Fire1"))
         {
             RaycastHit hitSpot;
@@ -45,7 +47,7 @@ public class Weapon : MonoBehaviour
             lineRenderer.SetPosition(0, weapon.position); //At any time, laser has come from weapon
             yield return null;
         }
-
+        audio.Stop();
         stopShooting();
     }
 

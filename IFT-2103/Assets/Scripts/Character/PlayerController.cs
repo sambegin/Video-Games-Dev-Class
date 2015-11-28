@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private Transform weapon;
     private Transform hitTarget;
 
-    void Start ()
+    void Start()
     {
         this.mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         this.weapon = GameObject.FindGameObjectWithTag("Weapon").GetComponent<Transform>();
@@ -46,13 +46,16 @@ public class PlayerController : MonoBehaviour
 
     private void handleFlashlight()
     {
+        AudioSource audio = GetComponent<AudioSource>();
         if (Input.GetKeyDown(KeyCode.Q) && flashlightIsOn)
         {
+            audio.Play();
             flashlight.intensity = 0;
             flashlightIsOn = false;
         }
-        else if(Input.GetKeyDown(KeyCode.Q) && !flashlightIsOn)
+        else if (Input.GetKeyDown(KeyCode.Q) && !flashlightIsOn)
         {
+            audio.Play();
             flashlight.intensity = initialFlashlightIntensity;
             flashlightIsOn = true;
         }
