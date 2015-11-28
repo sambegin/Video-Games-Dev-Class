@@ -24,14 +24,26 @@ namespace Assets.Scripts.Camera
             y = angles.x;
             cameraTarget = GameObject.FindGameObjectWithTag("CameraTarget").GetComponent<Transform>();
             cameraObstructionWatcher = new CameraObstructionWatcher();
+            lastCollidedObjectByCamera = 
         }
 
         void LateUpdate()
         {
             if (cameraTarget)
             {
-               // lastCollidedObjectByCamera.GetComponent<Renderer>().material.
-
+                var objectCollidedWithCamera = cameraObstructionWatcher.GetCollidingObject(transform.position, cameraTarget.position);
+                if(objectCollidedWithCamera != null && objectCollidedWithCamera != lastCollidedObjectByCamera)
+                {
+                    var objectRenderer = objectCollidedWithCamera.GetComponent<Renderer>();
+                    if(objectRenderer != null)
+                    {
+                        lastCollidedObjectByCamera.GetComponent<Renderer>().enabled = true;
+                        lastCollidedObjectByCamera = objectCollidedWithCamera.transform;
+                        objectRenderer.enabled = false;
+                        //var currentObjectColor = objectRenderer.material.color;
+                        //objectRenderer.material.color = new Color(currentObjectColor.r, currentObjectColor.g, currentObjectColor.b, 0.0f);
+                    }
+                }
 
                 x += Input.GetAxis("Mouse X") * xSpeed * 0.02f;
                 y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
