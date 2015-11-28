@@ -4,6 +4,8 @@ Unity3D Ignore Folders
 # =============== #
 Temp/
 Library/
+Shine_Data
+ShineTest_Data
 
 
 
