@@ -12,6 +12,8 @@ public class Map : MonoBehaviour {
 
     void Start()
     {
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.Play();
         levelManager = FindObjectOfType<LevelManager>();
         GameObject sun = GameObject.Find("Directional Light");
         globalLightning = sun.GetComponent<GlobalLightning>();
@@ -34,6 +36,8 @@ public class Map : MonoBehaviour {
             if(getPercentageLighted() >= 100 & mapIsEntirelyIlluminated == false)
             {
                 mapIsEntirelyIlluminated = true;
+                AudioSource audio = GetComponent<AudioSource>();
+                audio.Stop();
                 levelManager.playerHasWon();
             }
         }

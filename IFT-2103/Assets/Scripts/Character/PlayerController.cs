@@ -46,16 +46,16 @@ public class PlayerController : MonoBehaviour
 
     private void handleFlashlight()
     {
-        AudioSource audio = GetComponent<AudioSource>();
+        AudioSource[] audio = GetComponents<AudioSource>();
         if (Input.GetKeyDown(KeyCode.Q) && flashlightIsOn)
         {
-            audio.Play();
+            audio[0].Play();
             flashlight.intensity = 0;
             flashlightIsOn = false;
         }
         else if (Input.GetKeyDown(KeyCode.Q) && !flashlightIsOn)
         {
-            audio.Play();
+            audio[0].Play();
             flashlight.intensity = initialFlashlightIntensity;
             flashlightIsOn = true;
         }
@@ -76,6 +76,8 @@ public class PlayerController : MonoBehaviour
 
     private void handleCharacterJump()
     {
+        AudioSource[] audio = GetComponents<AudioSource>();
+
         CharacterController controller = GetComponent<CharacterController>();
 
         if (controller.isGrounded)
@@ -86,6 +88,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButton("Jump"))
             {
+                audio[1].Play();
                 moveDirection.y = jumpHeight;
             }
 
