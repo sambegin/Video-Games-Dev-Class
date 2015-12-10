@@ -20,7 +20,6 @@ public class PauseManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SwitchPauseValue();
-            pauseGame();
         }
     }
 
@@ -33,6 +32,7 @@ public class PauseManager : MonoBehaviour {
     public void SwitchPauseValue ()
     {
         isPaused = !isPaused;
+        pauseGame();
     }
 
     public void ReturnToMainMenu ()

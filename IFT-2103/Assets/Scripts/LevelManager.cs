@@ -5,7 +5,7 @@ using System;
 public class LevelManager : MonoBehaviour {
 
     public GameObject gameOverCanvas;
-    public MouseOrbitWithZoomCamera cameraMovment;
+    private MouseOrbitWithZoomCamera cameraMovment;
 
     void Start ()
     {
@@ -14,7 +14,6 @@ public class LevelManager : MonoBehaviour {
 
     internal void playerHasWon()
     {
-
         Instantiate(gameOverCanvas);
     }
 
@@ -25,9 +24,9 @@ public class LevelManager : MonoBehaviour {
         canvas.isGameOver(true);
     }
 
-    public void pauseGame(bool state)
+    public void pauseGame(bool gameState)
     {
-        if (state)
+        if (gameState)
         {
             Time.timeScale = 0.0f;
             enableCursor();
@@ -37,8 +36,8 @@ public class LevelManager : MonoBehaviour {
             Time.timeScale = 1.0f;
             disableCursor();
         }     
-        cameraMovment.enabled = !state;
-
+        cameraMovment.enabled = !gameState;
+       
     }
 
     private void disableCursor()

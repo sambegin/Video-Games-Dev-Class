@@ -17,6 +17,8 @@ TagManager:
   - CameraTarget
   - Weapon
   - HitTarget
+  - LevelManager
+  - Laser
   layers:
   - Default
   - TransparentFX

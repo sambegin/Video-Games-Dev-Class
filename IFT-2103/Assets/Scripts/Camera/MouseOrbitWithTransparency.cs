@@ -14,7 +14,6 @@ namespace Assets.Scripts.Camera
         private float x = 0;
         private float y = 0;
 
-        private Transform lastCollidedObjectByCamera;
         private CameraObstructionWatcher cameraObstructionWatcher;
 
         void Start()
@@ -30,9 +29,6 @@ namespace Assets.Scripts.Camera
         {
             if (cameraTarget)
             {
-               // lastCollidedObjectByCamera.GetComponent<Renderer>().material.
-
-
                 x += Input.GetAxis("Mouse X") * xSpeed * 0.02f;
                 y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
 
