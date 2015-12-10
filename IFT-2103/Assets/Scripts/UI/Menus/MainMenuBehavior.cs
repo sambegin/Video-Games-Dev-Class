@@ -32,6 +32,11 @@ public class MainMenuBehavior : MonoBehaviour {
     private Transform stageThree;
     
 
+    void Start()
+    {
+        Time.timeScale = 1; //When reloading scene from another scene, timeScale is at 0... Don't know why !
+    }
+
     public void Update ()
     {
         startGameTransform = GameObject.FindGameObjectWithTag("StartGame").transform;
