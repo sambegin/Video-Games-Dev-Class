@@ -312,7 +312,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverCanvas: {fileID: 198996, guid: c4040b127fc95a74a96a508bc42d4fc6, type: 2}
-  cameraMovment: {fileID: 0}
 --- !u!4 &856362122
 Transform:
   m_ObjectHideFlags: 0
