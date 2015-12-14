@@ -17,10 +17,11 @@ public class PlayerController : MonoBehaviour
 
     public float rotSpeed;
 
-
     private Camera mainCamera;
     private Transform weapon;
     private Transform hitTarget;
+
+    private Animator animator;
 
     void Start()
     {
@@ -28,8 +29,12 @@ public class PlayerController : MonoBehaviour
         this.weapon = GameObject.FindGameObjectWithTag("Weapon").GetComponent<Transform>();
         this.hitTarget = GameObject.FindGameObjectWithTag("HitTarget").GetComponent<Transform>();
         this.flashlight = GetComponentInChildren<Light>();
+        this.animator = GetComponentInChildren<Animator>();
         initialFlashlightIntensity = flashlight.intensity;
         flashlight.intensity = 0;
+
+
+        this.animator.SetBool("walking", true);
     }
 
     void Update()
