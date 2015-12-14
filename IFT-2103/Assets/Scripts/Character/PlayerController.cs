@@ -22,7 +22,9 @@ public class PlayerController : MonoBehaviour
     private Transform weapon;
     private Transform hitTarget;
 
-    void Start()
+    private Animator animator;
+
+    void Awake()
     {
         this.mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         this.weapon = GameObject.FindGameObjectWithTag("Weapon").GetComponent<Transform>();
@@ -30,6 +32,7 @@ public class PlayerController : MonoBehaviour
         this.flashlight = GetComponentInChildren<Light>();
         initialFlashlightIntensity = flashlight.intensity;
         flashlight.intensity = 0;
+        this.animator = this.GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -64,7 +67,7 @@ public class PlayerController : MonoBehaviour
     private void handleCharacterBodyControl()
     {
         var targetPos = mainCamera.transform.position;
-        targetPos.y = transform.position.y; //Allows the hole body to stay completely straight. We now don't have the "weird" effect.
+        targetPos.y = transform.position.y; //Allows the whole body to stay completely straight. We now don't have the "weird" effect.
         var targetDir = Quaternion.LookRotation(-(targetPos - transform.position));
         transform.rotation = Quaternion.Slerp(transform.rotation, targetDir, rotSpeed * Time.deltaTime);
     }
@@ -100,6 +103,7 @@ public class PlayerController : MonoBehaviour
             moveDirection = transform.TransformDirection(moveDirection);
             moveDirection.x *= speed;
             moveDirection.z *= speed;
+            animator.SetBool("walking", true);
         }
 
         moveDirection.y -= gravity * Time.deltaTime;
