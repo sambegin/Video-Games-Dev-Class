@@ -8,7 +8,11 @@ Controls:
 ------------------
 -Direction: WASD
 -Turn flashlight On/Off: Q
+-Shoot light: Mouse left click
+-Jump: Spacebar
 
 Cheat codes:
 -----------------
+Press enter to activate cheat code text box.
+
 -Chuck Norris: Win the game;
