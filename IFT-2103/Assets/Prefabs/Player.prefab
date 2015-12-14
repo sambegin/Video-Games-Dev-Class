@@ -1193,10 +1193,10 @@ Animator:
   m_GameObject: {fileID: 194826}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: ec05c066eab6f5c4398d4b705250b0b7, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9ff0f9cc75838f0438d0b998c4300a5d, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -1381,7 +1381,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1
+  m_Height: 2
   m_Radius: .5
   m_SlopeLimit: 45
   m_StepOffset: .300000012

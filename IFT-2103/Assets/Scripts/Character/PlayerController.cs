@@ -32,9 +32,6 @@ public class PlayerController : MonoBehaviour
         this.animator = GetComponentInChildren<Animator>();
         initialFlashlightIntensity = flashlight.intensity;
         flashlight.intensity = 0;
-
-
-        this.animator.SetBool("walking", true);
     }
 
     void Update()
@@ -108,7 +105,18 @@ public class PlayerController : MonoBehaviour
         }
 
         moveDirection.y -= gravity * Time.deltaTime;
-        controller.Move(moveDirection * Time.deltaTime);
+
+        Debug.Log(moveDirection.magnitude);
+        if(moveDirection.magnitude == 1)
+        {
+            this.animator.SetBool("walking", false);
+        }
+        else
+        {
+            this.animator.SetBool("walking", true);
+            controller.Move(moveDirection * Time.deltaTime);
+        }
+        
     }
 
 }

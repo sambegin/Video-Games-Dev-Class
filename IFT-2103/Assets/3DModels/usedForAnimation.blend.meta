@@ -1,0 +1,141 @@
+fileFormatVersion: 2
+guid: 84365c582a1060b44b25269810e43d86
+timeCreated: 1450119792
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Bone
+    100002: Bone_001
+    100004: Bone_002
+    100006: Bone_003
+    100008: Cone
+    100010: GunCross
+    100012: GunTube
+    100014: Head
+    100016: LeftArm
+    100018: LeftFoot
+    100020: PlayerRig
+    100022: RIghtFoot
+    100024: Sphere
+    100026: Sphere_001
+    100028: Sphere_002
+    100030: Sphere_003
+    100032: //RootNode
+    400000: Bone
+    400002: Bone_001
+    400004: Bone_002
+    400006: Bone_003
+    400008: Cone
+    400010: GunCross
+    400012: GunTube
+    400014: Head
+    400016: LeftArm
+    400018: LeftFoot
+    400020: PlayerRig
+    400022: RIghtFoot
+    400024: Sphere
+    400026: Sphere_001
+    400028: Sphere_002
+    400030: Sphere_003
+    400032: //RootNode
+    2300000: Cone
+    2300002: GunCross
+    2300004: GunTube
+    2300006: Head
+    2300008: LeftArm
+    2300010: Sphere
+    2300012: Sphere_001
+    2300014: Sphere_002
+    2300016: Sphere_003
+    3300000: Cone
+    3300002: GunCross
+    3300004: GunTube
+    3300006: Head
+    3300008: LeftArm
+    3300010: Sphere
+    3300012: Sphere_001
+    3300014: Sphere_002
+    3300016: Sphere_003
+    4300000: RIghtFoot
+    4300002: LeftFoot
+    4300004: Sphere_001
+    4300006: GunTube
+    4300008: GunCross
+    4300010: LeftArm
+    4300012: Sphere
+    4300014: Cone
+    4300016: Head
+    4300018: Sphere_003
+    4300020: Sphere_002
+    7400000: Default Take
+    7400002: PlayerRigAction
+    7400004: PlayerRigAction_000
+    7400006: PlayerRigAction_003
+    9500000: //RootNode
+    13700000: LeftFoot
+    13700002: RIghtFoot
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
