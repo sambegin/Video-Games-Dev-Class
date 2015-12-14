@@ -1,0 +1,413 @@
+fileFormatVersion: 2
+guid: 2eb3dd82049dd0d4eae3175d8690d526
+timeCreated: 1450130338
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Bone
+    100002: Bone.001
+    100004: Bone.001_end
+    100006: Bone.002
+    100008: Bone.003
+    100010: Bone.003_end
+    100012: Camera
+    100014: Cone
+    100016: GunCross
+    100018: GunTube
+    100020: Head
+    100022: LeftArm
+    100024: LeftFoot
+    100026: PlayerRig
+    100028: RIghtFoot
+    100030: Sphere
+    100032: Sphere.001
+    100034: Sphere.002
+    100036: Sphere.003
+    100038: //RootNode
+    400000: Bone
+    400002: Bone.001
+    400004: Bone.001_end
+    400006: Bone.002
+    400008: Bone.003
+    400010: Bone.003_end
+    400012: Camera
+    400014: Cone
+    400016: GunCross
+    400018: GunTube
+    400020: Head
+    400022: LeftArm
+    400024: LeftFoot
+    400026: PlayerRig
+    400028: RIghtFoot
+    400030: Sphere
+    400032: Sphere.001
+    400034: Sphere.002
+    400036: Sphere.003
+    400038: //RootNode
+    2300000: Cone
+    2300002: GunCross
+    2300004: GunTube
+    2300006: Head
+    2300008: LeftArm
+    2300010: LeftFoot
+    2300012: RIghtFoot
+    2300014: Sphere
+    2300016: Sphere.001
+    2300018: Sphere.002
+    2300020: Sphere.003
+    3300000: Cone
+    3300002: GunCross
+    3300004: GunTube
+    3300006: Head
+    3300008: LeftArm
+    3300010: LeftFoot
+    3300012: RIghtFoot
+    3300014: Sphere
+    3300016: Sphere.001
+    3300018: Sphere.002
+    3300020: Sphere.003
+    4300000: LeftFoot
+    4300002: RIghtFoot
+    4300004: Sphere.001
+    4300006: GunTube
+    4300008: GunCross
+    4300010: LeftArm
+    4300012: Sphere
+    4300014: Cone
+    4300016: Head
+    4300018: Sphere.003
+    4300020: Sphere.002
+    7400000: PlayerRigAction.000
+    7400002: PlayerRig|PlayerRigAction
+    7400004: PlayerRig|PlayerRigAction.000
+    7400006: PlayerRig|PlayerRigAction.003
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: PlayerRigAction.000
+      takeName: PlayerRigAction.000
+      firstFrame: 0
+      lastFrame: 48
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Cone
+        weight: 1
+      - path: GunTube
+        weight: 1
+      - path: GunTube/GunCross
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: PlayerRig
+        weight: 1
+      - path: PlayerRig/Bone
+        weight: 1
+      - path: PlayerRig/Bone/Bone.001
+        weight: 1
+      - path: PlayerRig/Bone/Bone.001/Bone.001_end
+        weight: 1
+      - path: PlayerRig/Bone/Bone.001/LeftFoot
+        weight: 1
+      - path: PlayerRig/Bone.002
+        weight: 1
+      - path: PlayerRig/Bone.002/Bone.003
+        weight: 1
+      - path: PlayerRig/Bone.002/Bone.003/Bone.003_end
+        weight: 1
+      - path: PlayerRig/Bone.002/Bone.003/RIghtFoot
+        weight: 1
+      - path: Sphere
+        weight: 1
+      - path: Sphere.001
+        weight: 1
+      - path: Sphere.002
+        weight: 1
+      - path: Sphere.003
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: PlayerRig|PlayerRigAction
+      takeName: PlayerRig|PlayerRigAction
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Cone
+        weight: 1
+      - path: GunTube
+        weight: 1
+      - path: GunTube/GunCross
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: PlayerRig
+        weight: 1
+      - path: PlayerRig/Bone
+        weight: 1
+      - path: PlayerRig/Bone/Bone.001
+        weight: 1
+      - path: PlayerRig/Bone/Bone.001/Bone.001_end
+        weight: 1
+      - path: PlayerRig/Bone/Bone.001/LeftFoot
+        weight: 1
+      - path: PlayerRig/Bone.002
+        weight: 1
+      - path: PlayerRig/Bone.002/Bone.003
+        weight: 1
+      - path: PlayerRig/Bone.002/Bone.003/Bone.003_end
+        weight: 1
+      - path: PlayerRig/Bone.002/Bone.003/RIghtFoot
+        weight: 1
+      - path: Sphere
+        weight: 1
+      - path: Sphere.001
+        weight: 1
+      - path: Sphere.002
+        weight: 1
+      - path: Sphere.003
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: PlayerRig|PlayerRigAction.000
+      takeName: PlayerRig|PlayerRigAction.000
+      firstFrame: 0
+      lastFrame: 48
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Cone
+        weight: 1
+      - path: GunTube
+        weight: 1
+      - path: GunTube/GunCross
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: PlayerRig
+        weight: 1
+      - path: PlayerRig/Bone
+        weight: 1
+      - path: PlayerRig/Bone/Bone.001
+        weight: 1
+      - path: PlayerRig/Bone/Bone.001/Bone.001_end
+        weight: 1
+      - path: PlayerRig/Bone/Bone.001/LeftFoot
+        weight: 1
+      - path: PlayerRig/Bone.002
+        weight: 1
+      - path: PlayerRig/Bone.002/Bone.003
+        weight: 1
+      - path: PlayerRig/Bone.002/Bone.003/Bone.003_end
+        weight: 1
+      - path: PlayerRig/Bone.002/Bone.003/RIghtFoot
+        weight: 1
+      - path: Sphere
+        weight: 1
+      - path: Sphere.001
+        weight: 1
+      - path: Sphere.002
+        weight: 1
+      - path: Sphere.003
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: PlayerRig|PlayerRigAction.003
+      takeName: PlayerRig|PlayerRigAction.003
+      firstFrame: 0
+      lastFrame: 48
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Cone
+        weight: 1
+      - path: GunTube
+        weight: 1
+      - path: GunTube/GunCross
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: LeftArm
+        weight: 1
+      - path: PlayerRig
+        weight: 1
+      - path: PlayerRig/Bone
+        weight: 1
+      - path: PlayerRig/Bone/Bone.001
+        weight: 1
+      - path: PlayerRig/Bone/Bone.001/Bone.001_end
+        weight: 1
+      - path: PlayerRig/Bone/Bone.001/LeftFoot
+        weight: 1
+      - path: PlayerRig/Bone.002
+        weight: 1
+      - path: PlayerRig/Bone.002/Bone.003
+        weight: 1
+      - path: PlayerRig/Bone.002/Bone.003/Bone.003_end
+        weight: 1
+      - path: PlayerRig/Bone.002/Bone.003/RIghtFoot
+        weight: 1
+      - path: Sphere
+        weight: 1
+      - path: Sphere.001
+        weight: 1
+      - path: Sphere.002
+        weight: 1
+      - path: Sphere.003
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
