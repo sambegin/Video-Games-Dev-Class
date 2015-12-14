@@ -418,7 +418,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 152020}
-  m_LocalRotation: {x: .536265433, y: .588332772, z: .50228709, w: .337626398}
+  m_LocalRotation: {x: .536265492, y: .588332832, z: .502287149, w: .337626427}
   m_LocalPosition: {x: -.0563906729, y: -.373027861, z: .242597759}
   m_LocalScale: {x: 1.00000012, y: 1.00000119, z: 1.00000012}
   m_Children:
@@ -1381,7 +1381,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 1.89999998
   m_Radius: .5
   m_SlopeLimit: 45
   m_StepOffset: .300000012
@@ -1418,6 +1418,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Volume
       value: .43900001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Height
+      value: 1.89999998
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
