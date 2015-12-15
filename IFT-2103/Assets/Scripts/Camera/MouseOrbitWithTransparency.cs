@@ -14,15 +14,12 @@ namespace Assets.Scripts.Camera
         private float x = 0;
         private float y = 0;
 
-        private CameraObstructionWatcher cameraObstructionWatcher;
-
         void Start()
         {
             var angles = transform.eulerAngles;
             x = angles.y;
             y = angles.x;
             cameraTarget = GameObject.FindGameObjectWithTag("CameraTarget").GetComponent<Transform>();
-            cameraObstructionWatcher = new CameraObstructionWatcher();
         }
 
         void LateUpdate()
