@@ -38,7 +38,7 @@ public class MouseOrbitWithZoomCamera : MonoBehaviour {
             y = ClampAngle(y, yMinLimit, yMaxLimit);
 
             var rotation = Quaternion.Euler(y, x, 0);
-            var position = rotation * new Vector3(0, 0, -distance) + cameraTarget.position;
+            var position = rotation * new Vector3(0, 0, -distance) + cameraTarget.position + cameraTarget.right + cameraTarget.up;
 
             transform.rotation = rotation;
             transform.position = position;

@@ -106,7 +106,6 @@ public class PlayerController : MonoBehaviour
 
         moveDirection.y -= gravity * Time.deltaTime;
 
-        Debug.Log(moveDirection.magnitude);
         if(moveDirection.magnitude == 1)
         {
             this.animator.SetBool("walking", false);
