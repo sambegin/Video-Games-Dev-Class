@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Runtime.Serialization;
+//using System.Runtime.Serialization;
 
-[Serializable]
+//[Serializable]
 internal class MaterialNotFoundException : Exception
 {
     public MaterialNotFoundException()
@@ -16,7 +16,7 @@ internal class MaterialNotFoundException : Exception
     {
     }
 
-    protected MaterialNotFoundException(SerializationInfo info, StreamingContext context) : base(info, context)
-    {
-    }
+    //protected MaterialNotFoundException(SerializationInfo info, StreamingContext context) : base(info, context)
+    //{
+    //}
 }
