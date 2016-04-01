@@ -11,14 +11,20 @@ public class LevelInitializer : MonoBehaviour {
     public GameObject pauseMenu;
     public GameObject HUD;
     public Camera mainCameraPrefab;
+    public GameObject mobileControlsCanvas;
+    private GameObject playerPrefabInstantiated;
 
-	void Start () {
+
+    void Start () {
         loadMap();
         loadHud();
         loadPlayer();
         loadPauseMenu();
         loadMainCamera();
         setupCursor();
+        #if UNITY_ANDROID
+            loadMobileControls();
+        #endif
     }
 
     private void loadHud()
@@ -35,7 +41,7 @@ public class LevelInitializer : MonoBehaviour {
     private void loadPlayer()
     {
         Vector3 initialPlayerPosition = new Vector3(0, 2f, 0);
-        Instantiate(playerPrefab, initialPlayerPosition, new Quaternion());
+        this.playerPrefabInstantiated = (GameObject)Instantiate(playerPrefab, initialPlayerPosition, new Quaternion());
     }
 
     private void loadPauseMenu()
@@ -52,6 +58,14 @@ public class LevelInitializer : MonoBehaviour {
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    private void loadMobileControls()
+    {
+        GameObject instance = (GameObject)Instantiate(mobileControlsCanvas);
+        MobileControlsCanvas mobileControlsInstance = instance.GetComponent<MobileControlsCanvas>();
+        PlayerController playerController = playerPrefabInstantiated.GetComponent<PlayerController>();
+        mobileControlsInstance.initialize(playerController);
     }
 
 }

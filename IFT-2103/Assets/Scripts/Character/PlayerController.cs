@@ -5,7 +5,6 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-
     private float speed = 20.0f;
     private float jumpHeight = 20.0f;
     private Vector3 moveDirection = Vector3.zero;
@@ -78,8 +77,6 @@ public class PlayerController : MonoBehaviour
 
     private void handleCharacterJump()
     {
-        AudioSource[] audio = GetComponents<AudioSource>();
-
         CharacterController controller = GetComponent<CharacterController>();
 
         if (controller.isGrounded)
@@ -87,13 +84,13 @@ public class PlayerController : MonoBehaviour
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             moveDirection = transform.TransformDirection(moveDirection);
             moveDirection *= speed;
-
             if (Input.GetButton("Jump"))
             {
+                AudioSource[] audio = GetComponents<AudioSource>();
+
                 audio[1].Play();
                 moveDirection.y = jumpHeight;
             }
-
 
         }
         else
@@ -116,6 +113,18 @@ public class PlayerController : MonoBehaviour
             controller.Move(moveDirection * Time.deltaTime);
         }
         
+    }
+
+    public void jump()
+    {
+        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        moveDirection = transform.TransformDirection(moveDirection);
+        moveDirection *= speed;
+
+        AudioSource[] audio = GetComponents<AudioSource>();
+
+        audio[1].Play();
+        moveDirection.y = jumpHeight;
     }
 
 }
