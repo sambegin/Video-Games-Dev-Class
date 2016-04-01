@@ -117,14 +117,7 @@ public class PlayerController : MonoBehaviour
 
     public void jump()
     {
-        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        moveDirection = transform.TransformDirection(moveDirection);
-        moveDirection *= speed;
-
-        AudioSource[] audio = GetComponents<AudioSource>();
-
-        audio[1].Play();
-        moveDirection.y = jumpHeight;
+        Debug.Log("jump from mobile");
     }
 
 }
