@@ -12,7 +12,7 @@ public class MobileControlsCanvas : MonoBehaviour {
 
     public void jump()
     {
-        playerController.jump();
+        playerController.jumpFromUI();
     }
 
 

@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private Transform hitTarget;
 
     private Animator animator;
+    CharacterController controller;
 
     void Start()
     {
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
         this.animator = GetComponentInChildren<Animator>();
         initialFlashlightIntensity = flashlight.intensity;
         flashlight.intensity = 0;
+        this.controller = GetComponent<CharacterController>();
     }
 
     void Update()
@@ -42,7 +44,16 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        handleCharacterTranslations();
         handleCharacterJump();
+    }
+
+    private void handleCharacterJump()
+    {
+        if (controller.isGrounded && Input.GetButton("Jump"))
+        {
+            jump();
+        }
     }
 
     private void handleFlashlight()
@@ -75,23 +86,13 @@ public class PlayerController : MonoBehaviour
         weapon.LookAt(hitTarget.position);
     }
 
-    private void handleCharacterJump()
-    {
-        CharacterController controller = GetComponent<CharacterController>();
-
+    private void handleCharacterTranslations()
+    {       
         if (controller.isGrounded)
         {
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             moveDirection = transform.TransformDirection(moveDirection);
             moveDirection *= speed;
-            if (Input.GetButton("Jump"))
-            {
-                AudioSource[] audio = GetComponents<AudioSource>();
-
-                audio[1].Play();
-                moveDirection.y = jumpHeight;
-            }
-
         }
         else
         {
@@ -103,7 +104,7 @@ public class PlayerController : MonoBehaviour
 
         moveDirection.y -= gravity * Time.deltaTime;
 
-        if(moveDirection.magnitude == 1)
+        if (moveDirection.magnitude == 1)
         {
             this.animator.SetBool("walking", false);
         }
@@ -112,12 +113,25 @@ public class PlayerController : MonoBehaviour
             this.animator.SetBool("walking", true);
             controller.Move(moveDirection * Time.deltaTime);
         }
-        
+
     }
 
-    public void jump()
+    private void jump()
     {
-        Debug.Log("jump from mobile");
+        AudioSource[] audio = GetComponents<AudioSource>();
+
+        audio[1].Play();
+        moveDirection.y = jumpHeight;
+        controller.Move(moveDirection * Time.deltaTime);
+    }
+
+    public void jumpFromUI()
+    {
+        if (controller.isGrounded)
+        {
+            Debug.Log("jump from mobile");
+            jump();
+        }
     }
 
 }
