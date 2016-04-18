@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
     private Animator animator;
     CharacterController controller;
+    private AudioSource[] audio;
 
     void Start()
     {
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
         initialFlashlightIntensity = flashlight.intensity;
         flashlight.intensity = 0;
         this.controller = GetComponent<CharacterController>();
+        this.audio = GetComponents<AudioSource>();
     }
 
     void Update()
@@ -58,19 +60,40 @@ public class PlayerController : MonoBehaviour
 
     private void handleFlashlight()
     {
-        AudioSource[] audio = GetComponents<AudioSource>();
-        if (Input.GetKeyDown(KeyCode.Q) && flashlightIsOn)
+        bool hasToggledFlashlight = false;
+        #if UNITY_ANDROID
+        float zAcceleration = Input.acceleration.z;
+        if (zAcceleration > 1)
         {
-            audio[0].Play();
-            flashlight.intensity = 0;
-            flashlightIsOn = false;
+            hasToggledFlashlight = true;
         }
-        else if (Input.GetKeyDown(KeyCode.Q) && !flashlightIsOn)
+        #endif
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            audio[0].Play();
-            flashlight.intensity = initialFlashlightIntensity;
-            flashlightIsOn = true;
+            hasToggledFlashlight = true;
         }
+        if (hasToggledFlashlight && flashlightIsOn)
+        {
+            turnFlashlightOn();
+        }
+        else if (hasToggledFlashlight && !flashlightIsOn)
+        {
+            turnFlashLightOff();
+        }
+    }
+
+    private void turnFlashLightOff()
+    {
+        audio[0].Play();
+        flashlight.intensity = initialFlashlightIntensity;
+        flashlightIsOn = true;
+    }
+
+    private void turnFlashlightOn()
+    {
+        audio[0].Play();
+        flashlight.intensity = 0;
+        flashlightIsOn = false;
     }
 
     private void handleCharacterBodyControl()
@@ -118,8 +141,6 @@ public class PlayerController : MonoBehaviour
 
     private void jump()
     {
-        AudioSource[] audio = GetComponents<AudioSource>();
-
         audio[1].Play();
         moveDirection.y = jumpHeight;
         controller.Move(moveDirection * Time.deltaTime);
@@ -132,6 +153,11 @@ public class PlayerController : MonoBehaviour
             Debug.Log("jump from mobile");
             jump();
         }
+    }
+
+    public void flashlightToggle()
+    {
+
     }
 
 }
