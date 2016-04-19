@@ -155,10 +155,5 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void flashlightToggle()
-    {
-
-    }
-
 }
 
