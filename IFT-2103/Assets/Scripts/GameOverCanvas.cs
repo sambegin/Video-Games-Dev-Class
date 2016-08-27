@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
-using System;
 
 public class GameOverCanvas : MonoBehaviour
 {
@@ -12,7 +10,7 @@ public class GameOverCanvas : MonoBehaviour
         LevelManager levelManager = FindObjectOfType<LevelManager>();
         levelManager.pauseGame(true);
     }
-    
+
     public void goToMainMenu()
     {
         Application.LoadLevel(0);

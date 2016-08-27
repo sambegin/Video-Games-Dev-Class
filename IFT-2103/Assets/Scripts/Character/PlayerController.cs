@@ -1,7 +1,4 @@
 ﻿using UnityEngine;
-using System;
-using System.Collections;
-
 
 public class PlayerController : MonoBehaviour
 {
@@ -61,7 +58,7 @@ public class PlayerController : MonoBehaviour
     private void handleFlashlight()
     {
         bool hasToggledFlashlight = false;
-        #if UNITY_ANDROID
+        #if UNITY_ANDROID || UNITY_WSA
         float zAcceleration = Input.acceleration.z;
         if (zAcceleration > 1)
         {
@@ -72,11 +69,11 @@ public class PlayerController : MonoBehaviour
         {
             hasToggledFlashlight = true;
         }
-        if (hasToggledFlashlight && flashlightIsOn)
+        if (hasToggledFlashlight && !flashlightIsOn)
         {
             turnFlashlightOn();
         }
-        else if (hasToggledFlashlight && !flashlightIsOn)
+        else if (hasToggledFlashlight && flashlightIsOn)
         {
             turnFlashLightOff();
         }
@@ -86,14 +83,14 @@ public class PlayerController : MonoBehaviour
     {
         audio[0].Play();
         flashlight.intensity = initialFlashlightIntensity;
-        flashlightIsOn = true;
+        flashlightIsOn = false;
     }
 
     private void turnFlashlightOn()
     {
         audio[0].Play();
         flashlight.intensity = 0;
-        flashlightIsOn = false;
+        flashlightIsOn = true;
     }
 
     private void handleCharacterBodyControl()
