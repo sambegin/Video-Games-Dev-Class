@@ -10,6 +10,26 @@ public class MobileControlsCanvas : MonoBehaviour {
         this.playerController = playerController;
     }
 
+    public void moveForward()
+    {
+        
+    }
+
+    public void moveRight()
+    {
+        
+    }
+
+    public void moveBackwards()
+    {
+        
+    }
+
+    public void moveLeft()
+    {
+        
+    }
+
     public void jump()
     {
         playerController.jumpFromUI();

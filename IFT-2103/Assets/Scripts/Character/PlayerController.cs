@@ -110,7 +110,8 @@ public class PlayerController : MonoBehaviour
     }
 
     private void handleCharacterTranslations()
-    {       
+    {
+#if !UNITY_ANDROID
         if (controller.isGrounded)
         {
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -124,6 +125,22 @@ public class PlayerController : MonoBehaviour
             moveDirection.x *= speed;
             moveDirection.z *= speed;
         }
+#endif
+#if UNITY_ANDROID
+        //if (controller.isGrounded)
+        //{
+        //    moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        //    moveDirection = transform.TransformDirection(moveDirection);
+        //    moveDirection *= speed;
+        //}
+        //else
+        //{
+        //    moveDirection = new Vector3(Input.GetAxis("Horizontal"), moveDirection.y, Input.GetAxis("Vertical"));
+        //    moveDirection = transform.TransformDirection(moveDirection);
+        //    moveDirection.x *= speed;
+        //    moveDirection.z *= speed;
+        //}
+#endif
 
         moveDirection.y -= gravity * Time.deltaTime;
 
